@@ -3,7 +3,7 @@ function setup() {
 }
 
 function draw() {
-  background("aqua");
+  background("red");
 
   fill(0);
   textSize(24);
