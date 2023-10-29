@@ -15,7 +15,7 @@ function draw() {
 
     let sprite = new Sprite(mouse.x, mouse.y, 30, 30);
 
-    sprite.color = "blue"
+    sprite.color = "yellow"
     sprite.vel.x = random(-1, 1);
     sprite.vel.y = random(-1, 1);
 
