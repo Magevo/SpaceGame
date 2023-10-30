@@ -29,6 +29,7 @@ function preload(){
 
   //preload score data 
 }
+
 function setup() {
   new Canvas(width, height);
   //font 
@@ -141,4 +142,3 @@ function drawScoreScreen() {
     }
   }
 }
-

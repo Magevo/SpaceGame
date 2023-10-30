@@ -36,12 +36,47 @@ class Base {
     this.y = y;
   }
 
-  createSquare(){
+  createSquare(color){
     rect(this.x, this.y, 30, 30);
   }
 }
 
-let homeBase = new Base(100, 100);
+class Resources{
+  constructor(x, y, diameter, color){
+    this.x = x;
+    this.y = y;
+    this.diameter = diameter;
+    this.color = color;
+  }
+
+  createResourceCircle(){
+    fill(this.color);
+    circle(this.x, this.y, this.diameter)
+  }
+}
+
+class Ship{
+  constructor(x, y, diameter, color){
+    this.x = x;
+    this.y = y;
+    this.diameter = diameter;
+    this.color = color;
+  }
+
+  createShipCircle(){
+    fill(this.color);
+    circle(this.x, this.y, this.diameter)
+  }
+}
+
+
+let homeBase = new Base(W/1.2, H/1.4);
+let enemyBase = new Base(W/10, H/7);
+
+let resourceA = new Resources(W/1.1, H/1.4, 10, 'green');
+let resourceB = new Resources(W/1.3, H/1.4, 10, 'blue');
+
+let playerShip1 = new Ship(W/1.1, H/1.6, 20, 'red');
 
 //let ball2 = new Ball(W/2, H/2);
 
@@ -58,4 +93,15 @@ function setup() {
 function draw() {
   background(125)
   homeBase.createSquare();
+  enemyBase.createSquare();
+  resourceA.createResourceCircle();
+  resourceB.createResourceCircle();
+
+  playerShip1.createShipCircle();
+
+  if (mouse.presses()){
+    playerShip1.x = mouseX;
+    playerShip1.y = mouseY;
+  }
+
 }
