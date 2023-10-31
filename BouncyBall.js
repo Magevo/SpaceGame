@@ -30,10 +30,23 @@ const H = 400
 }*/
 
 
+
+
+
+
+////CLASS FOR CREATING BASES/////
 class Base {
   constructor(x, y){
     this.x = x;
     this.y = y;
+  }
+
+  preload(){
+    
+  }
+
+  setup(){
+
   }
 
   createSquare(color){
@@ -49,6 +62,15 @@ class Resources{
     this.color = color;
   }
 
+  
+  preload(){
+    
+  }
+
+  setup(){
+
+  }
+  
   createResourceCircle(){
     fill(this.color);
     circle(this.x, this.y, this.diameter)
@@ -61,6 +83,14 @@ class Ship{
     this.y = y;
     this.diameter = diameter;
     this.color = color;
+  }
+
+  preload(){
+    
+  }
+
+  setup(){
+
   }
 
   createShipCircle(){
@@ -96,7 +126,6 @@ function draw() {
   enemyBase.createSquare();
   resourceA.createResourceCircle();
   resourceB.createResourceCircle();
-
   playerShip1.createShipCircle();
 
   if (mouse.presses()){
