@@ -33,6 +33,7 @@ function preload() {
 
   //preload score data 
 }
+
 function setup() {
   new Canvas(width, height);
   //font 
@@ -161,4 +162,6 @@ function drawScoreScreen() {
       sprite.vel.x = random(-1, 1);
       sprite.vel.y = random(-1, 1);
 
-  }*/
+    }
+  }
+}
