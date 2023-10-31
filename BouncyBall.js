@@ -23,8 +23,8 @@ class Base {
   createSquare(){
     //This only needs to be run once in draw to have the bases spawn//
     if(this.baseSpriteSpawn === false){
-      this.enemyBaseSprite = new Sprite(W/1.2, H/1.4);
-      this.playerBaseSprite = new Sprite(W/10, H/7);
+      this.enemyBaseSprite = new Sprite(W/1.2, H/1.4, 30, 30);
+      this.playerBaseSprite = new Sprite(W/10, H/7, 30, 30);
       this.baseSpriteSpawn = true;
     }
    
@@ -79,7 +79,6 @@ class Ship{
 
 let createBases = new Base();
 
-
 let resourceA = new Resources(W/1.1, H/1.4, 10, 'green');
 let resourceB = new Resources(W/1.3, H/1.4, 10, 'blue');
 
@@ -99,7 +98,7 @@ function setup() {
 
 function draw() {
   background(125)
-  homeBase.createSquare();
+  createBases.createSquare();
   resourceA.createResourceCircle();
   resourceB.createResourceCircle();
   playerShip1.createShipCircle();
