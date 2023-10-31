@@ -1,44 +1,15 @@
 const W = 800
 const H = 400
 
-/*class Ball {
-  constructor(x, y){
-    this.x = x;
-    this.y = y;
-    this.velocity={
-      x:2,
-      y:0
-    }
-    this.diameter = 30
-  }
-  preload(){
-    console.log("You called preload");
-  }
-  setup(){
-    console.log("You called setup");
-  }
-  draw(){
-    console.log("You called draw");
-    circle(this.x,this.y,this.diameter);
-
-    if(this.x > W || this.x < 0){
-      this.velocity.x=-this.velocity.x;
-    }
-  
-    this.x+=this.velocity.x;
-  }
-}*/
-
-
-
-
-
 
 ////CLASS FOR CREATING BASES/////
 class Base {
   constructor(x, y){
     this.x = x;
     this.y = y;
+    this.baseSpriteSpawn=false;
+    this.enemyBaseSprite;
+    this.playerBaseSprite;
   }
 
   preload(){
@@ -49,8 +20,14 @@ class Base {
 
   }
 
-  createSquare(color){
-    rect(this.x, this.y, 30, 30);
+  createSquare(){
+    //This only needs to be run once in draw to have the bases spawn//
+    if(this.baseSpriteSpawn === false){
+      this.enemyBaseSprite = new Sprite(W/1.2, H/1.4);
+      this.playerBaseSprite = new Sprite(W/10, H/7);
+      this.baseSpriteSpawn = true;
+    }
+   
   }
 }
 
@@ -100,8 +77,8 @@ class Ship{
 }
 
 
-let homeBase = new Base(W/1.2, H/1.4);
-let enemyBase = new Base(W/10, H/7);
+let createBases = new Base();
+
 
 let resourceA = new Resources(W/1.1, H/1.4, 10, 'green');
 let resourceB = new Resources(W/1.3, H/1.4, 10, 'blue');
@@ -123,7 +100,6 @@ function setup() {
 function draw() {
   background(125)
   homeBase.createSquare();
-  enemyBase.createSquare();
   resourceA.createResourceCircle();
   resourceB.createResourceCircle();
   playerShip1.createShipCircle();
@@ -134,3 +110,38 @@ function draw() {
   }
 
 }
+
+
+
+
+
+/*class Ball {
+  constructor(x, y){
+    this.x = x;
+    this.y = y;
+    this.velocity={
+      x:2,
+      y:0
+    }
+    this.diameter = 30
+  }
+  preload(){
+    console.log("You called preload");
+  }
+  setup(){
+    console.log("You called setup");
+  }
+  draw(){
+    console.log("You called draw");
+    circle(this.x,this.y,this.diameter);
+
+    if(this.x > W || this.x < 0){
+      this.velocity.x=-this.velocity.x;
+    }
+  
+    this.x+=this.velocity.x;
+  }
+}*/
+
+
+
