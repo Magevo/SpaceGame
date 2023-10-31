@@ -10,13 +10,17 @@ const SCORE = 3;
 let currentGameScreen = START_SCREEN;
 
 //Game ready only on game screen 
-let isGameReady = false; 
+let isGameReady = false;
+
+//buttons 
+let scoreButton;
+let startGameButton;
 
 //Canvas size 
-const width = 1200; 
-const height = 800; 
+const width = 1200;
+const height = 800;
 
-function preload(){
+function preload() {
   //preload background image 
 
   //preload player and enemy base
@@ -34,9 +38,32 @@ function setup() {
   //font 
 
   //start game button 
+  startGameButton = createButton('Start Game');
+  startGameButton.position();
+  startGameButton.size(); 
+  startGameButton.mousePressed(gotoGame);
 
   //score button 
+  scoreButton = createButton('Score');
+  scoreButton.position();
+  scoreButton.size();
+  scoreButton.mousePressed(gotoScore);
+}
 
+function hideGameButton(){
+  startGameButton.position(-4000,-4000); //Hides game button from other screens 
+}
+
+function showGameButton(){
+  startGameButton.position(); //Shows game button on main menu 
+}
+
+function hideScoreButton(){
+  scoreButton.position(-4000,-4000); //Hides score button from other screens 
+}
+
+function showScoreButton(){
+  scoreButton.position(); // Shows score button on main menu
 }
 
 function draw() {
@@ -75,7 +102,7 @@ function drawStartScreen() {
   //Game name 
 
   //keyboard function to go to main menu 
-  
+
   //background sound
 
   //game ready 
@@ -88,10 +115,6 @@ function drawMainMenu() {
   //hide/show buttons 
 
   //background image 
-
-  //button for play 
-
-  //button for score 
 
 }
 
