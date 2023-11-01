@@ -3,9 +3,15 @@
 /////it should create a sprite with the relevant image and resources.
 
 /////STILL TRYING TO FIGURE OUT HOW TO CALL STUFF OUT OF THE FACTORY EFFICIENTLY//////
+
+let enemyShipFactor = 0.12;
+let playerShipFactor = 0.18;
+let resourceFactor = 0.18;
+
 class objectCreation {
     constructor(){
       this.images = new Array(); ////Array for storing images.
+      this.createPlayerBaseMade = false;
     }
   
     preload(){
@@ -17,16 +23,18 @@ class objectCreation {
       this.images.push({id: "enemyShips", path: "assets/combatShips/enemyShips/Ship_LVL_1.png"})
       this.images.push({id: "shotRound", path: "assets/shots/Rocket_Effect_01.png"})
   
-      for(let img of this.images){
-          img.image = loadImage(image.path);
-      }
+      ////Not sure if important, keep just in case///
+      /*for(let img of this.images){
+          img.image = loadImage(img.path);
+      }*/
     }
+    
   
     ////This will loop through the array and return the requested image when run in functions below.
     getImageByID(id){
         for(let img of this.images){
           if (img.id === id) {
-            return img.image;
+            return img.path;
           }
         }
         return null;
@@ -39,10 +47,12 @@ class objectCreation {
   
     createResourceOne(x, y){
       let obj = this.createObject(x, y);
-      obj.image = this.getImageByID("resourceOne");
+      obj.img = this.getImageByID("resourceOne");
       obj.resource = 5;
+      obj.scale = 0.18
       obj.textSize = 20;
       obj.text = obj.resource;
+      console.log(img.path)
       return obj;
     }
   
@@ -51,6 +61,7 @@ class objectCreation {
       obj.image = this.getImageByID("resourceTwo");
       obj.resource = 5;
       obj.textSize = 20;
+      obj.scale = 0.18
       obj.text = obj.resource;
       return obj;
     }
@@ -60,7 +71,9 @@ class objectCreation {
       obj.image = this.getImageByID("playerBase");
       obj.hp = 20;
       obj.textSize = 20;
+      obj.scale = playerShipFactor;
       obj.text = obj.hp;
+      this.createPlayerBaseMade = true;
       return obj;
     }
   
@@ -69,6 +82,7 @@ class objectCreation {
       obj.image = this.getImageByID("enemyBase");
       obj.hp = 20;
       obj.textSize = 20;
+      obj.scale = enemyShipFactor;
       obj.text = obj.hp;
       return obj;
     }
