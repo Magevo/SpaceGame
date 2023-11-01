@@ -1,18 +1,20 @@
-const W = 800
-const H = 400
+const W = 1000
+const H = 750
 
-let createBases = new Base();
+let spawnCheck = false;
+let ship1;
+let resource;
+let resource2;
 
-let resourceA = new Resources(W/1.1, H/1.4, 10, 'green');
-let resourceB = new Resources(W/1.3, H/1.4, 10, 'blue');
+let imageCreation = new objectCreation();
 
-let playerShip1 = new Ship(W/1.1, H/1.6, 20, 'red');
 
 
 
 
 function preload(){
-  
+ // img = loadImage('assets/resources/Meteor_01.png');
+  imageCreation.preload();
 }
 
 function setup() {
@@ -22,15 +24,29 @@ function setup() {
 
 function draw() {
   background(125)
-  createBases.createSquare();
-  resourceA.createResourceCircle();
-  resourceB.createResourceCircle();
-  playerShip1.createShipCircle();
 
-  if (mouse.presses()){
+  //image(img, 10, 10);
+
+  //console.log(imageCreation.createPlayerBaseMade);
+  if (imageCreation.createPlayerBaseMade === false){
+    resource = imageCreation.createResourceOne(W/1.1, H/1.4);
+    resource2 = imageCreation.createResourceTwo(W/1.3, H/1.4);
+    imageCreation.createPlayerBase(W/1.15, H/1.15);
+    imageCreation.createEnemyBase(W/10, H/7);
+    ship1 = imageCreation.createPlayerShips(width/2, height/2);
+  }
+
+
+
+  /*if (mouse.presses()){
     playerShip1.x = mouseX;
     playerShip1.y = mouseY;
-  }
+  }*/
+
+   //Erin's attempt at movement (works in personal js file)
+   if (mouse.presses()) {
+     ship1.moveTo(mouse.x, mouse.y, 4);
+   }
 
 }
 
