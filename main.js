@@ -42,6 +42,11 @@ function draw() {
     playerShip1.y = mouseY;
   }
 
+  // Erin's attempt at movement (works in personal js file)
+  // if (mouse.presses()) {
+  //   ship.moveTo(mouse.x, mouse.y, 4);
+  // }
+
 }
 
 
