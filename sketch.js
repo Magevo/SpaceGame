@@ -154,7 +154,19 @@ function customButtons() {
   } else {
 
     if (mouseX > 100 && mouseX < 700 && mouseY > 470 && mouseY < 570) {
+      if (mouseIsPressed){
+        gotoScore;
+      } else {
+        noStroke();
+        fill('black');
+        rect(100,565,600,4,20);
 
+        fill('yellow');
+        textFont(myFont);
+        textSize(60);
+        textAlign(CENTER);
+        text("Score", 400,500)
+      }
     }
   }
 }
