@@ -37,7 +37,7 @@ function draw() {
   }
 
 
-
+ console.log(resource2.resource);
   /*if (mouse.presses()){
     playerShip1.x = mouseX;
     playerShip1.y = mouseY;
