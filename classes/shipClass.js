@@ -1,4 +1,6 @@
 
+let playerShip1Movement;
+
 class Ship{
     constructor(x, y, diameter, color){
       this.x = x;
@@ -18,5 +20,6 @@ class Ship{
     createShipCircle(){
       fill(this.color);
       circle(this.x, this.y, this.diameter)
+      // playerShip1Movement = playerShip1.moveTo(mouse.x, mouse.y, 4);
     }
   }
