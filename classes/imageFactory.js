@@ -52,7 +52,6 @@ class objectCreation {
       obj.scale = 0.18
       obj.textSize = 20;
       obj.text = obj.resource;
-      console.log(img.path)
       return obj;
     }
   

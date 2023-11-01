@@ -12,8 +12,8 @@ let playerShip1 = new Ship(W/1.1, H/1.6, 20, 'red');
 
 
 function preload(){
-  img = loadImage('assets/resources/Meteor_01.png');
-  imageCreation.preload()
+ // img = loadImage('assets/resources/Meteor_01.png');
+  imageCreation.preload();
 }
 
 function setup() {
