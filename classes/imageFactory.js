@@ -7,6 +7,7 @@
 let enemyShipFactor = 0.12;
 let playerShipFactor = 0.18;
 let resourceFactor = 0.18;
+let fighterShipsFactor = 0.04;
 
 class objectCreation {
     constructor(){
@@ -92,6 +93,7 @@ class objectCreation {
       obj.hp = 4;
       obj.textSize = 10;
       obj.text = obj.hp;
+      obj.scale = fighterShipsFactor;
       return obj;
     }
   
