@@ -7,21 +7,33 @@ const SCORE = 3;
 /*const DEMO_VIDEO = 4;*/ //
 
 //current state 
-let currentGameScreen = START_SCREEN;
+let currentGameScreen = MAIN_MENU;
 
 //Game ready only on game screen 
 let isGameReady = false;
 
-//buttons 
-let scoreButton;
-let startGameButton;
+//background images 
+let gameBackgroundimg;
+let startscreenBackgroundimg;
+let mainMenuBackgroundimg; 
+let scoreBackgroundimg; 
+
+//font 
+let myFont; 
+
+//scoreboard
+
 
 //Canvas size 
-const width = 1200;
-const height = 800;
+const width = 1000;
+const height = 750;
 
 function preload() {
   //preload background image 
+  startscreenBackgroundimg = loadImage('assets/backgrounds/startscreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  mainMenuBackgroundimg = loadImage('assets/backgrounds/mainScreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  gameBackgroundimg = loadImage('assets/backgrounds/gameBackground.png'); https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  scoreBackgroundimg = loadImage('assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
 
   //preload player and enemy base
 
@@ -30,41 +42,16 @@ function preload() {
   //preload sounds 
 
   //preload font 
+  myFont = loadFont('assets/Audiowide-Regular.ttf');
 
   //preload score data 
+
 }
 
 function setup() {
   new Canvas(width, height);
   //font 
 
-  //start game button 
-  startGameButton = createButton('Start Game');
-  startGameButton.position();
-  startGameButton.size(); 
-  startGameButton.mousePressed(gotoGame);
-
-  //score button 
-  scoreButton = createButton('Score');
-  scoreButton.position();
-  scoreButton.size();
-  scoreButton.mousePressed(gotoScore);
-}
-
-function hideGameButton(){
-  startGameButton.position(-4000,-4000); //Hides game button from other screens 
-}
-
-function showGameButton(){
-  startGameButton.position(); //Shows game button on main menu 
-}
-
-function hideScoreButton(){
-  scoreButton.position(-4000,-4000); //Hides score button from other screens 
-}
-
-function showScoreButton(){
-  scoreButton.position(); // Shows score button on main menu
 }
 
 function draw() {
@@ -97,9 +84,12 @@ function gotoScore() {
 
 function drawStartScreen() {
   //hide/show buttons
+  hideGameButton();
+  hideScoreButton();
 
   //background image
-
+  image(startscreenBackgroundimg, 0,0);
+  
   //Game name 
 
   //keyboard function to go to main menu 
@@ -116,6 +106,7 @@ function drawMainMenu() {
   //hide/show buttons 
 
   //background image 
+  image(mainMenuBackgroundimg, 0,0);
 
 }
 
@@ -123,7 +114,8 @@ function drawGameScreen() {
   //hide/show buttons
 
   //background image 
-
+  image(gameBackgroundimg, 0,0);
+  
   //HP monitor
     //player health 
     //enemy health  
@@ -136,32 +128,33 @@ function drawGameScreen() {
 
 }
 
-
 function drawScoreScreen() {
   //hide/show buttons 
 
   //background image 
-
+  image(scoreBackgroundimg, 0,0);
   // array for scores 
 }
 
+function customButtons() {
+  if (mouseX > 245 && mouseX < 545 && mousey > 320 && mouseY < 420){
+    if (mouseIsPressed){
+      gotoGame;
+    } else {
+      noStroke();
+      fill("black");
+      rect(250,415,285,4,20);
 
+      fill('yellow');
+      textFont(myFont);
+      textSize(60);
+      textAlign(CENTER); 
+      text("Start", 400, 400);
+    }
+  } else {
 
-
-/*fill(0);
-  textSize(24);
-  textAlign(CENTER);
-  text('Click to create a new sprite', width / 2, height / 2);
-  text('Git Attemp 1', width / 2, height / 1.5);
-
-    if (mouse.presses()) {
-
-      let sprite = new Sprite(mouse.x, mouse.y, 30, 30);
-
-      sprite.color = "yellow"
-      sprite.vel.x = random(-1, 1);
-      sprite.vel.y = random(-1, 1);
+    if (mouseX > 100 && mouseX < 700 && mouseY > 470 && mouseY < 570) {
 
     }
   }
-}*/
+}
