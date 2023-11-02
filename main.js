@@ -44,9 +44,9 @@ function draw() {
   }*/
 
    //Erin's attempt at movement (works in personal js file)
-   if (mouse.presses()) {
-     ship1.moveTo(mouse.x, mouse.y, 4);
-   }
+  if (mouse.presses()) {
+    ship1.moveTo(mouse.x, mouse.y, 4);
+  }
 
 }
 
