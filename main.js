@@ -6,6 +6,9 @@ let ship1;
 let resource;
 let resource2;
 
+
+let playerShipsGroup, enemyShipsGroup, resourceGroup;
+
 let imageCreation = new objectCreation();
 
 
@@ -19,6 +22,7 @@ function preload(){
 
 function setup() {
   new Canvas(W, H);
+  playerShipsGroup = new Group();
     
 }
 
@@ -30,6 +34,7 @@ function draw() {
   //console.log(imageCreation.createPlayerBaseMade);
   if (imageCreation.createPlayerBaseMade === false){
     resource = imageCreation.createResourceOne(W/1.1, H/1.4);
+    resourceGroup.add(resource);
     resource2 = imageCreation.createResourceTwo(W/1.3, H/1.4);
     imageCreation.createPlayerBase(W/1.15, H/1.15);
     imageCreation.createEnemyBase(W/10, H/7);
