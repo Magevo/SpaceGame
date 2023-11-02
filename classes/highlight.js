@@ -73,8 +73,7 @@ function highlight(){
     }
 
     if(mouse.released()){
-
-        boxy.overlaps(test, tester())
+       
    
         firstSelect = [];
         selectionArray = [];
