@@ -8,11 +8,14 @@ let enemyShipFactor = 0.12;
 let playerShipFactor = 0.18;
 let resourceFactor = 0.18;
 let fighterShipsFactor = 0.04;
+let debugged = true;
+
 
 class objectCreation {
     constructor(){
       this.images = new Array(); ////Array for storing images.
       this.createPlayerBaseMade = false;
+      this.createPlayerShipMade = false;
     }
   
     preload(){
@@ -20,7 +23,7 @@ class objectCreation {
       this.images.push({id: "resourceTwo", path: "assets/resources/Meteor_02.png"})
       this.images.push({id: "playerBase", path: "assets/base/player_base.png"})
       this.images.push({id: "enemyBase", path: "assets/base/enemy_base.png"})
-      this.images.push({id: "playerShips", path: "assets/combatShips/playerShips/Ship_LVL_1.png"})
+      this.images.push({id: "playerShips", path: "assets/combatShips/playerShips/Ship_LVL_5.png"})
       this.images.push({id: "enemyShips", path: "assets/combatShips/enemyShips/Ship_LVL_1.png"})
       this.images.push({id: "shotRound", path: "assets/shots/Rocket_Effect_01.png"})
   
@@ -49,9 +52,12 @@ class objectCreation {
     createResourceOne(x, y){
       let obj = this.createObject(x, y);
       obj.img = this.getImageByID("resourceOne");
-      obj.resource = 5;
-      obj.scale = 0.18
-      obj.textSize = 20;
+      obj.resource = 10;
+      obj.textSize = 15;
+      obj.h = 35;
+      obj.w = 35;
+      obj.collider = 'static';
+      obj.debug = debugged;
       obj.text = obj.resource;
       return obj;
     }
@@ -60,8 +66,11 @@ class objectCreation {
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("resourceTwo");
       obj.resource = 5;
-      obj.textSize = 20;
-      obj.scale = 0.18
+      obj.textSize = 10;
+      obj.h = 40;
+      obj.w = 40;
+      obj.collider = 'static';
+      obj.debug = debugged;
       obj.text = obj.resource;
       return obj;
     }
@@ -70,9 +79,12 @@ class objectCreation {
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("playerBase");
       obj.hp = 20;
-      obj.textSize = 20;
-      obj.scale = playerShipFactor;
+      obj.textSize = 10;
+      obj.h = 70;
+      obj.w = 140;
+      obj.collider = 'static';
       obj.text = obj.hp;
+      obj.debug = debugged;
       this.createPlayerBaseMade = true;
       return obj;
     }
@@ -81,9 +93,11 @@ class objectCreation {
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("enemyBase");
       obj.hp = 20;
-      obj.textSize = 20;
-      obj.scale = enemyShipFactor;
+      obj.textSize = 10;
+      obj.h = 85;
+      obj.w = 90;
       obj.text = obj.hp;
+      obj.debug = debugged;
       return obj;
     }
   
@@ -91,9 +105,12 @@ class objectCreation {
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("playerShips");
       obj.hp = 4;
+      obj.h = 45;
+      obj.w = 30;
       obj.textSize = 10;
       obj.text = obj.hp;
-      obj.scale = fighterShipsFactor;
+      obj.debug = debugged;
+      this.createPlayerShipMade = true;
       return obj;
     }
   
@@ -103,12 +120,14 @@ class objectCreation {
       obj.hp = 4;
       obj.textSize = 10;
       obj.text = obj.hp;
+      obj.debug = debugged;
       return obj;
     }
   
     createShotRound(x, y){
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("shotRound");
+      obj.debug = debugged;
       return obj;
     }
   }
