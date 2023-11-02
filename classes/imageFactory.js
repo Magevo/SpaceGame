@@ -15,6 +15,7 @@ class objectCreation {
     constructor(){
       this.images = new Array(); ////Array for storing images.
       this.createPlayerBaseMade = false;
+      this.createPlayerShipMade = false;
     }
   
     preload(){
@@ -109,6 +110,7 @@ class objectCreation {
       obj.textSize = 10;
       obj.text = obj.hp;
       obj.debug = debugged;
+      this.createPlayerShipMade = true;
       return obj;
     }
   

@@ -1,5 +1,5 @@
 const W = 1000
-const H = 800
+const H = 750
 
 let firstSelect = [];
 let selectionArray = [];
