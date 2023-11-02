@@ -18,6 +18,9 @@ let startscreenBackgroundimg;
 let mainMenuBackgroundimg; 
 let scoreBackgroundimg; 
 
+//button 
+
+
 //font 
 let myFont; 
 
@@ -83,10 +86,6 @@ function gotoScore() {
 }
 
 function drawStartScreen() {
-  //hide/show buttons
-  hideGameButton();
-  hideScoreButton();
-
   //background image
   image(startscreenBackgroundimg, 0,0);
   
@@ -103,16 +102,46 @@ function drawStartScreen() {
 }
 
 function drawMainMenu() {
-  //hide/show buttons 
-
   //background image 
   image(mainMenuBackgroundimg, 0,0);
+
+  //text 
+  let Line1 = 140
+  let Line2 = Line1 + 100
+  let Mid = 400
+
+
+  let Line3 = 400
+  let Line4 = Line3 + 150
+  let Line5 = Line4 + 150
+
+  textFont(myFont);
+  textSize(60);
+  textAlign(CENTER);
+
+
+  //Orange Shadow
+  fill("Orange");
+  text("", Mid, Line1);
+  text("", Mid, Line2);
+
+  //Black Shadow Start + Exit
+  fill("Black")
+  text("Start", Mid, Line3 + 10)
+  text("High Score", Mid,Line4 + 10)
+  text("Exit", Mid, Line5 + 10)
+ 
+  //Blue Text
+  fill(0, 213, 255);
+  text("", Mid + 5, Line1 + 0);
+  text("", Mid + 5, Line2 + 0);
+
+  //custom button function 
+  customButtons();
 
 }
 
 function drawGameScreen() {
-  //hide/show buttons
-
   //background image 
   image(gameBackgroundimg, 0,0);
   
@@ -129,32 +158,44 @@ function drawGameScreen() {
 }
 
 function drawScoreScreen() {
-  //hide/show buttons 
-
   //background image 
   image(scoreBackgroundimg, 0,0);
+
   // array for scores 
 }
 
 function customButtons() {
-  if (mouseX > 245 && mouseX < 545 && mousey > 320 && mouseY < 420){
-    if (mouseIsPressed){
+  if (mouseX > 245 && mouseX < 545 && mouseY > 320 && mouseY < 420) {
+    if (mouseIsPressed) {
       gotoGame;
+
     } else {
       noStroke();
-      fill("black");
-      rect(250,415,285,4,20);
+      fill("white");
+      rect(250, 415, 285, 4, 20);
 
       fill('yellow');
       textFont(myFont);
       textSize(60);
-      textAlign(CENTER); 
+      textAlign(CENTER);
       text("Start", 400, 400);
     }
-  } else {
+  } else { }
 
-    if (mouseX > 100 && mouseX < 700 && mouseY > 470 && mouseY < 570) {
+  if (mouseX > 100 && mouseX < 700 && mouseY > 470 && mouseY < 570) {
+    if (mouseIsPressed) {
+      gotoScore;
 
+    } else {
+      noStroke();
+      fill('white');
+      rect(100, 565, 600, 4, 20);
+
+      fill('yellow');
+      textFont(myFont);
+      textSize(60);
+      textAlign(CENTER);
+      text("Score", 400, 500)
     }
   }
 }
