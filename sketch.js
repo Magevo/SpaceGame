@@ -7,7 +7,7 @@ const SCORE = 3;
 /*const DEMO_VIDEO = 4;*/ //
 
 //current state 
-let currentGameScreen = MAIN_MENU;
+let currentGameScreen = START_SCREEN;
 
 //Game ready only on game screen 
 let isGameReady = false;
@@ -47,6 +47,8 @@ function preload() {
 
   //preload score data 
   scoreData = loadStrings('data/score.txt');
+
+  imageCreation.preload();
 }
 
 function setup() {
@@ -110,6 +112,7 @@ function drawStartScreen() {
     currentGameScreen = MAIN_MENU;
   }
 
+  
   //background sound
 
   
@@ -169,6 +172,14 @@ function drawGameScreen() {
   /* if(isGameReady === false){
     isGameReady = true; 
   }*/
+
+  if (imageCreation.createPlayerBaseMade === false){
+    resource = imageCreation.createResourceOne(W/1.1, H/1.4);
+    resource2 = imageCreation.createResourceTwo(W/1.3, H/1.4);
+    imageCreation.createPlayerBase(W/1.15, H/1.15);
+    imageCreation.createEnemyBase(W/10, H/7);
+    ship1 = imageCreation.createPlayerShips(width/2, height/2);
+  }
 }
 
 function drawScoreScreen() {
