@@ -50,6 +50,8 @@ function setup() {
   new Canvas(width, height);
   //font 
 
+  spawnShip = new Group();
+
 }
 
 function draw() {
@@ -162,6 +164,18 @@ function drawGameScreen() {
     //enemy base 
 
   //resources 
+
+  if (imageCreation.createPlayerShipMade === false){
+    ship1 = imageCreation.createPlayerShips(width/2, height/2);
+}
+
+
+if(mouse.pressed() && spawnShip.length <= 4){
+    ship1.hp --;
+    ship1.text = ship1.hp;
+    let playerShip = imageCreation.createPlayerShips(mouse.x, mouse.y);
+    spawnShip.push(playerShip);
+    }
 
 
   if (imageCreation.createPlayerBaseMade === false){
