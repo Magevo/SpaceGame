@@ -1,7 +1,7 @@
-const W = 1000
-const H = 750
+// const width = 1000
+// const height = 750
 
-let imageCreation = new objectCreation();
+// let imageCreation = new objectCreation();
 
 function preload(){
     imageCreation.preload();
