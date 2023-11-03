@@ -31,6 +31,6 @@ function draw(){
         }
 
     if(ship1.hp == 0){
-        remove
+        remove;
     }
 }
