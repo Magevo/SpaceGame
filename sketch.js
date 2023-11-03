@@ -174,10 +174,10 @@ function drawGameScreen() {
   }*/
 
   if (imageCreation.createPlayerBaseMade === false){
-    resource = imageCreation.createResourceOne(W/1.1, H/1.4);
-    resource2 = imageCreation.createResourceTwo(W/1.3, H/1.4);
-    imageCreation.createPlayerBase(W/1.15, H/1.15);
-    imageCreation.createEnemyBase(W/10, H/7);
+    resource = imageCreation.createResourceOne(width/1.1, height/1.4);
+    resource2 = imageCreation.createResourceTwo(width/1.3, height/1.4);
+    imageCreation.createPlayerBase(width/1.15, height/1.15);
+    imageCreation.createEnemyBase(width/10, height/7);
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
 }
