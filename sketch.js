@@ -48,13 +48,10 @@ function preload() {
   myFont = loadFont('assets/Audiowide-Regular.ttf');
 
   //preload score data 
-<<<<<<< HEAD
-
-=======
   scoreData = loadStrings('data/score.txt');
 
   imageCreation.preload();
->>>>>>> fb802972677632495584f507bd47909335440c6e
+
 }
 
 function setup() {
