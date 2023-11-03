@@ -8,9 +8,6 @@ const SCORE = 3;
 //current state 
 let currentGameScreen = START_SCREEN;
 
-//Game ready only on game screen 
-let isGameReady = false;
-
 //background images 
 let gameBackgroundimg;
 let startscreenBackgroundimg;
@@ -166,10 +163,6 @@ function drawGameScreen() {
 
   //resources 
 
-  //game ready 
-  /* if(isGameReady === false){
-    isGameReady = true; 
-  }*/
 
   if (imageCreation.createPlayerBaseMade === false){
     resource = imageCreation.createResourceOne(width/1.1, height/1.4);
