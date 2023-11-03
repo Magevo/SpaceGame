@@ -22,7 +22,8 @@ let scoreBackgroundimg;
 let myFont; 
 
 //scoreboard
-
+let scoreData;
+let data = [];
 
 //Canvas size 
 const width = 1000;
@@ -45,7 +46,7 @@ function preload() {
   myFont = loadFont('assets/Audiowide-Regular.ttf');
 
   //preload score data 
-
+  scoreData = loadStrings('data/score.txt');
 }
 
 function setup() {
@@ -156,7 +157,16 @@ function drawScoreScreen() {
   image(scoreBackgroundimg, 0,0);
 
   // array for scores 
-  
+  let boardX = 500; 
+  let boardY = 200;
+  textSize(40);
+  fill('red');
+  for (let i = 0; i < scoreData.length; i++) {
+    text(scoreData[i], boardX, boardY);
+    boardY += 40;
+  }
+
+  //Exit text and return to main menu
   let Mid = 900;
   let Line3 = 550;
   let Line4 = Line3 + 150;
@@ -183,8 +193,6 @@ function drawScoreScreen() {
 
   fill('red')
   text("Exit", Mid,Line4 + 10);
-
- 
 }
 
 function customButtons() {
