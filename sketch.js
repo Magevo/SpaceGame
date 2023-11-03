@@ -18,12 +18,14 @@ let startscreenBackgroundimg;
 let mainMenuBackgroundimg; 
 let scoreBackgroundimg; 
 
+//button 
+
+
 //font 
 let myFont; 
 
 //scoreboard
-let scoreData;
-let data = [];
+
 
 //Canvas size 
 const width = 1000;
@@ -33,7 +35,7 @@ function preload() {
   //preload background image 
   startscreenBackgroundimg = loadImage('assets/backgrounds/startscreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   mainMenuBackgroundimg = loadImage('assets/backgrounds/mainScreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
-  gameBackgroundimg = loadImage('assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  gameBackgroundimg = loadImage('assets/backgrounds/gameBackground.png'); https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   scoreBackgroundimg = loadImage('assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
 
   //preload player and enemy base
@@ -49,6 +51,7 @@ function preload() {
   scoreData = loadStrings('data/score.txt');
 
   imageCreation.preload();
+
 }
 
 function setup() {
@@ -74,15 +77,15 @@ function draw() {
 }
 
 function gotoMainMenu() {
-  currentGameScreen = MAIN_MENU; //go to main menu 
+  currentGameScreen == MAIN_MENU; //go to main menu 
 }
 
 function gotoGame() {
-  currentGameScreen = GAME; // go to the game screen 
+  currentGameScreen == GAME; // go to the game screen 
 }
 
 function gotoScore() {
-  currentGameScreen = SCORE; // go to the game score 
+  currentGameScreen == SCORE; // go to the game score 
 }
 
 function drawStartScreen() {
@@ -90,67 +93,55 @@ function drawStartScreen() {
   image(startscreenBackgroundimg, 0,0);
   
   //Game name 
-  let Line1 = 140
-  let Line2 = Line1 + 100
-  let Mid = 400
-  textFont(myFont);
-  textSize(60);
-  textAlign(CENTER);
-
-  //Orange Shadow
-  fill("Orange");
-  text("Space", Mid, Line1);
-  text("Wars", Mid, Line2);
-
-  //Blue Text
-  fill(0, 213, 255);
-  text("Space", Mid + 5, Line1 + 0);
-  text("Wars", Mid + 5, Line2 + 0);
 
   //keyboard function to go to main menu 
-  if (keyIsPressed){
-    currentGameScreen = MAIN_MENU;
-  }
 
   
   //background sound
 
-  
+  //game ready 
+  /* if(isGameReady === false){
+    isGameReady = true; 
+  }*/
 }
 
 function drawMainMenu() {
   //background image 
   image(mainMenuBackgroundimg, 0,0);
 
-  //custom button function 
-  customButtons();
-  
   //text 
   let Line1 = 140
   let Line2 = Line1 + 100
   let Mid = 400
 
+
   let Line3 = 400
   let Line4 = Line3 + 150
+  let Line5 = Line4 + 150
 
   textFont(myFont);
   textSize(60);
   textAlign(CENTER);
 
+
   //Orange Shadow
   fill("Orange");
-  text("Space", Mid, Line1);
-  text("Wars", Mid, Line2);
+  text("", Mid, Line1);
+  text("", Mid, Line2);
 
   //Black Shadow Start + Exit
-  fill("red")
+  fill("Black")
   text("Start", Mid, Line3 + 10)
-  text("Score", Mid,Line4 + 10)
+  text("High Score", Mid,Line4 + 10)
+  text("Exit", Mid, Line5 + 10)
  
   //Blue Text
   fill(0, 213, 255);
-  text("Space", Mid + 5, Line1 + 0);
-  text("Wars", Mid + 5, Line2 + 0);
+  text("", Mid + 5, Line1 + 0);
+  text("", Mid + 5, Line2 + 0);
+
+  //custom button function 
+  customButtons();
 
 }
 
@@ -180,6 +171,7 @@ function drawGameScreen() {
     imageCreation.createEnemyBase(width/10, height/7);
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
+
 }
 
 function drawScoreScreen() {
@@ -187,55 +179,19 @@ function drawScoreScreen() {
   image(scoreBackgroundimg, 0,0);
 
   // array for scores 
-  let boardX = 500; 
-  let boardY = 200;
-  textSize(40);
-  fill('red');
-  for (let i = 0; i < scoreData.length; i++) {
-    text(scoreData[i], boardX, boardY);
-    boardY += 40;
-  }
-
-  //Exit text and return to main menu
-  let Mid = 900;
-  let Line3 = 550;
-  let Line4 = Line3 + 150;
-  
-  if (mouseX > 850 && mouseX < 1000 && mouseY > 600 && mouseY < 700) {
-    if (mouseIsPressed) {
-      gotoMainMenu();
-
-    } else {
-      noStroke();
-      fill('yellow');
-      rect(800, 720, 285, 4, 20);
-
-      fill('black');
-      textFont(myFont);
-      textSize(60);
-      textAlign(CENTER);
-      text("Exit", 900, 700);
-    }
-  } 
-  textFont(myFont);
-  textSize(60);
-  textAlign(CENTER);
-
-  fill('red')
-  text("Exit", Mid,Line4 + 10);
 }
 
 function customButtons() {
   if (mouseX > 245 && mouseX < 545 && mouseY > 320 && mouseY < 420) {
     if (mouseIsPressed) {
-     gotoGame();
+      gotoGame;
 
     } else {
       noStroke();
-      fill("yellow");
+      fill("white");
       rect(250, 415, 285, 4, 20);
 
-      fill('black');
+      fill('yellow');
       textFont(myFont);
       textSize(60);
       textAlign(CENTER);
@@ -245,18 +201,18 @@ function customButtons() {
 
   if (mouseX > 100 && mouseX < 700 && mouseY > 470 && mouseY < 570) {
     if (mouseIsPressed) {
-      gotoScore();
+      gotoScore;
 
     } else {
       noStroke();
-      fill('yellow');
-      rect(250, 565, 285, 4, 20);
+      fill('white');
+      rect(100, 565, 600, 4, 20);
 
-      fill('black');
+      fill('yellow');
       textFont(myFont);
       textSize(60);
       textAlign(CENTER);
-      text("Score", 400, 550);
+      text("Score", 400, 500)
     }
   }
 }
