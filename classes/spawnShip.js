@@ -8,7 +8,7 @@ function preload(){
 }
 
 function setup() {
-    new Canvas(W, H);
+    new Canvas(width, height);
 
     //let toBeSpawnedShip = imageCreation.createPlayerShips();
     spawnShip = new Group();

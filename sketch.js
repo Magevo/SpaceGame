@@ -48,13 +48,8 @@ function preload() {
   myFont = loadFont('assets/Audiowide-Regular.ttf');
 
   //preload score data 
-<<<<<<< HEAD
-
-=======
   scoreData = loadStrings('data/score.txt');
-
   imageCreation.preload();
->>>>>>> fb802972677632495584f507bd47909335440c6e
 }
 
 function setup() {
@@ -162,8 +157,6 @@ function drawGameScreen() {
 
   //resources 
 
-<<<<<<< HEAD
-=======
   //game ready 
   /* if(isGameReady === false){
     isGameReady = true; 
@@ -176,7 +169,6 @@ function drawGameScreen() {
     imageCreation.createEnemyBase(W/10, H/7);
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
->>>>>>> fb802972677632495584f507bd47909335440c6e
 }
 
 function drawScoreScreen() {
