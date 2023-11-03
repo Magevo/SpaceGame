@@ -106,30 +106,40 @@ function highlight(){
 
     if(mouse.released()){
 
-        if(resourceShip.length > 0){
-        highlighter.overlaps(resourceShip[0], resourceShip0);
-        }
+        // if(resourceShip.length > 0){
+        // highlighter.overlaps(resourceShip[0], resourceShip0);
+        // }
 
-        if(resourceShip.length > 1){
-            highlighter.overlaps(resourceShip[1], resourceShip1);
-        }
+        // if(resourceShip.length > 1){
+        //     highlighter.overlaps(resourceShip[1], resourceShip1);
+        // }
 
-        if(resourceShip.length > 2){
+        // if(resourceShip.length > 2){
         
-            highlighter.overlaps(resourceShip[2], resourceShip2);
+        //     highlighter.overlaps(resourceShip[2], resourceShip2);
             
-        }
+        // }
     
-        if(resourceShip.length > 3){
+        // if(resourceShip.length > 3){
         
-            highlighter.overlaps(resourceShip[3], resourceShip3);
+        //     highlighter.overlaps(resourceShip[3], resourceShip3);
             
-        }
+        // }
     
-        if(resourceShip.length > 4){
+        // if(resourceShip.length > 4){
         
-            highlighter.overlaps(resourceShip[4], resourceShip4);
+        //     highlighter.overlaps(resourceShip[4], resourceShip4);
             
+        // }
+
+        // for (let i = 0; i < resourceShip.length; i++){
+        //     let linking = ("resourceShip" + i)
+        //     console.log(linking)
+        //     highlighter.overlaps(resourceShip[i], linking());
+        // }
+
+        for (let i = 0; i < resourceShip.length; i++){
+            highlighter.overlaps(resourceShip[i], resourceShiper(i));
         }
 
         // console.log(highlighter.overlaps(resourceShip))
@@ -153,28 +163,27 @@ function highlight(){
 }
 
 
-function resourceShip0() {
-    resourceShip[0].highlight = true
-    // console.log("resourceShip[0].highlight = true");
+function resourceShiper(i) {
+    resourceShip[i].highlight = true
 }
 
-function resourceShip1() {
-    resourceShip[1].highlight = true
-    // console.log("resourceShip[1].highlight = true");
-}
+// function resourceShip1() {
+//     resourceShip[1].highlight = true
+//     // console.log("resourceShip[1].highlight = true");
+// }
 
-function resourceShip2() {
-    resourceShip[2].highlight = true
-    // console.log("resourceShip[2].highlight = true");
-}
+// function resourceShip2() {
+//     resourceShip[2].highlight = true
+//     // console.log("resourceShip[2].highlight = true");
+// }
 
-function resourceShip3() {
-    resourceShip[3].highlight = true
-    // console.log("resourceShip[3].highlight = true");
-}
+// function resourceShip3() {
+//     resourceShip[3].highlight = true
+//     // console.log("resourceShip[3].highlight = true");
+// }
 
-function resourceShip4() {
-    resourceShip[4].highlight = true
-    // console.log("resourceShip[4].highlight = true");
-}
+// function resourceShip4() {
+//     resourceShip[4].highlight = true
+//     // console.log("resourceShip[4].highlight = true");
+// }
 
