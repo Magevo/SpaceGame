@@ -1,4 +1,3 @@
-
 //Game screens constants 
 const START_SCREEN = 0;
 const MAIN_MENU = 1;
@@ -7,10 +6,7 @@ const SCORE = 3;
 /*const DEMO_VIDEO = 4;*/ //
 
 //current state 
-let currentGameScreen = MAIN_MENU;
-
-//Game ready only on game screen 
-let isGameReady = false;
+let currentGameScreen = START_SCREEN;
 
 //background images 
 let gameBackgroundimg;
@@ -36,10 +32,9 @@ function preload() {
   gameBackgroundimg = loadImage('assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   scoreBackgroundimg = loadImage('assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
 
-  //preload player and enemy base
-
-  //preload resources 
-
+  //preload player, enemy base, resources
+  imageCreation.preload();
+  
   //preload sounds 
 
   //preload font 
@@ -47,12 +42,14 @@ function preload() {
 
   //preload score data 
   scoreData = loadStrings('data/score.txt');
+
 }
 
 function setup() {
   new Canvas(width, height);
   //font 
 
+  spawnShip = new Group();
 }
 
 function draw() {
@@ -68,7 +65,6 @@ function draw() {
   } else if (currentGameScreen == SCORE) {
     drawScoreScreen();
   }
-
 }
 
 function gotoMainMenu() {
@@ -110,6 +106,7 @@ function drawStartScreen() {
     currentGameScreen = MAIN_MENU;
   }
 
+  
   //background sound
 
   
@@ -165,11 +162,30 @@ function drawGameScreen() {
 
   //resources 
 
-  //game ready 
-  /* if(isGameReady === false){
-    isGameReady = true; 
-  }*/
+  //////TESTING SHIP SPAWNING / HP MANAGEMENT//////
+  if (imageCreation.createPlayerShipMade === false){
+    ship1 = imageCreation.createPlayerShips(width/2, height/2);
 }
+
+
+if(mouse.pressed() && spawnShip.length <= 4){
+    ship1.hp --;
+    ship1.text = ship1.hp;
+    let playerShip = imageCreation.createPlayerShips(mouse.x, mouse.y);
+    spawnShip.push(playerShip);
+    }
+
+////////////////////////////////////////////////////
+
+  if (imageCreation.createPlayerBaseMade === false){
+    resource = imageCreation.createResourceOne(width/1.1, height/1.4);
+    resource2 = imageCreation.createResourceTwo(width/1.3, height/1.4);
+    imageCreation.createPlayerBase(width/1.15, height/1.15);
+    imageCreation.createEnemyBase(width/10, height/7);
+    ship1 = imageCreation.createPlayerShips(width/2, height/2);
+  }
+}
+
 
 function drawScoreScreen() {
   //background image 
