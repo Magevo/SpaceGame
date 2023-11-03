@@ -43,7 +43,6 @@ function preload() {
   //preload score data 
   scoreData = loadStrings('data/score.txt');
 
-  
 }
 
 function setup() {
@@ -51,7 +50,6 @@ function setup() {
   //font 
 
   spawnShip = new Group();
-
 }
 
 function draw() {
@@ -67,7 +65,6 @@ function draw() {
   } else if (currentGameScreen == SCORE) {
     drawScoreScreen();
   }
-
 }
 
 function gotoMainMenu() {
