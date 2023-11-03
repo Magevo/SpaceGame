@@ -165,6 +165,7 @@ function drawGameScreen() {
 
   //resources 
 
+  //////TESTING SHIP SPAWNING / HP MANAGEMENT//////
   if (imageCreation.createPlayerShipMade === false){
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
 }
@@ -177,6 +178,7 @@ if(mouse.pressed() && spawnShip.length <= 4){
     spawnShip.push(playerShip);
     }
 
+////////////////////////////////////////////////////
 
   if (imageCreation.createPlayerBaseMade === false){
     resource = imageCreation.createResourceOne(width/1.1, height/1.4);
@@ -186,6 +188,7 @@ if(mouse.pressed() && spawnShip.length <= 4){
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
 }
+
 
 function drawScoreScreen() {
   //background image 
