@@ -7,7 +7,7 @@ const SCORE = 3;
 /*const DEMO_VIDEO = 4;*/ //
 
 //current state 
-let currentGameScreen = SCORE;
+let currentGameScreen = MAIN_MENU;
 
 //Game ready only on game screen 
 let isGameReady = false;
@@ -88,8 +88,27 @@ function drawStartScreen() {
   image(startscreenBackgroundimg, 0,0);
   
   //Game name 
+  let Line1 = 140
+  let Line2 = Line1 + 100
+  let Mid = 400
+  textFont(myFont);
+  textSize(60);
+  textAlign(CENTER);
+
+  //Orange Shadow
+  fill("Orange");
+  text("Space", Mid, Line1);
+  text("Wars", Mid, Line2);
+
+  //Blue Text
+  fill(0, 213, 255);
+  text("Space", Mid + 5, Line1 + 0);
+  text("Wars", Mid + 5, Line2 + 0);
 
   //keyboard function to go to main menu 
+  if (keyIsPressed){
+    currentGameScreen = MAIN_MENU;
+  }
 
   //background sound
 
@@ -117,8 +136,8 @@ function drawMainMenu() {
 
   //Orange Shadow
   fill("Orange");
-  text("", Mid, Line1);
-  text("", Mid, Line2);
+  text("Space", Mid, Line1);
+  text("Wars", Mid, Line2);
 
   //Black Shadow Start + Exit
   fill("red")
@@ -127,8 +146,8 @@ function drawMainMenu() {
  
   //Blue Text
   fill(0, 213, 255);
-  text("", Mid + 5, Line1 + 0);
-  text("", Mid + 5, Line2 + 0);
+  text("Space", Mid + 5, Line1 + 0);
+  text("Wars", Mid + 5, Line2 + 0);
 
 }
 
