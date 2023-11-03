@@ -35,10 +35,9 @@ function preload() {
   gameBackgroundimg = loadImage('assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   scoreBackgroundimg = loadImage('assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
 
-  //preload player and enemy base
-
-  //preload resources 
-
+  //preload player, enemy base, resources
+  imageCreation.preload();
+  
   //preload sounds 
 
   //preload font 
@@ -47,7 +46,7 @@ function preload() {
   //preload score data 
   scoreData = loadStrings('data/score.txt');
 
-  imageCreation.preload();
+  
 }
 
 function setup() {
