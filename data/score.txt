@@ -1,0 +1,10 @@
+Player          Score
+
+Nathan          5000
+Jackson         4500
+Kiandra         3000
+Erin            5500
+Jackson         7600
+Nathan          500
+Erin            700
+Kiandra         6000
