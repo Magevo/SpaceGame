@@ -105,8 +105,6 @@ function highlight(){
     }
 
     if(mouse.released()){
-       
-        
 
         if(resourceShip.length > 0){
         highlighter.overlaps(resourceShip[0], resourceShip0);
