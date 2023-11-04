@@ -8,7 +8,7 @@ let enemyShipFactor = 0.12;
 let playerShipFactor = 0.18;
 let resourceFactor = 0.18;
 let fighterShipsFactor = 0.04;
-let debugged = true;
+let debugged = false;
 
 
 class objectCreation {

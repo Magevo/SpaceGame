@@ -6,10 +6,10 @@ const SCORE = 3;
 /*const DEMO_VIDEO = 4;*/ //
 
 //current state 
-let currentGameScreen = START_SCREEN;
+let currentGameScreen = MAIN_MENU;
 
 //background images 
-let gameBackgroundimg;
+let gameBackground;
 let startscreenBackgroundimg;
 let mainMenuBackgroundimg; 
 let scoreBackgroundimg; 
@@ -21,15 +21,25 @@ let myFont;
 let scoreData;
 let data = [];
 
+//Highlighter Array
+let firstSelect = [];
+// let selectionArray = [];
+// let highlightSprite;
+
 //Canvas size 
 const width = 1000;
 const height = 750;
+
+//ScrollSpeed
+let scrollspeed = 0.5;
+let x1 = 0;
+let x2 = 1000;
 
 function preload() {
   //preload background image 
   startscreenBackgroundimg = loadImage('assets/backgrounds/startscreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   mainMenuBackgroundimg = loadImage('assets/backgrounds/mainScreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
-  gameBackgroundimg = loadImage('assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  gameBackground = loadImage('assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   scoreBackgroundimg = loadImage('assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
 
   //preload player, enemy base, resources
@@ -50,6 +60,7 @@ function setup() {
   //font 
 
   spawnShip = new Group();
+  highlighter = new Group();
 }
 
 function draw() {
@@ -150,7 +161,20 @@ function drawMainMenu() {
 
 function drawGameScreen() {
   //background image 
-  image(gameBackgroundimg, 0,0);
+  // image(gameBackground, 0,0);
+
+  image(gameBackground, x1, 0, W, H)
+  image(gameBackground, x2, 0, W, H)
+
+  x1 += scrollspeed
+  x2 += scrollspeed
+
+  if (x1 > W) {
+    x1 = -(W) + 10;
+  }
+  if (x2 > W) {
+    x2 = -(W) + 10;
+  }
   
   //HP monitor
     //player health 
@@ -173,6 +197,7 @@ if(mouse.pressed() && spawnShip.length <= 4){
     ship1.text = ship1.hp;
     let playerShip = imageCreation.createPlayerShips(mouse.x, mouse.y);
     spawnShip.push(playerShip);
+    console.log(spawnShip[0].highlight)
     }
 
 ////////////////////////////////////////////////////
@@ -182,8 +207,30 @@ if(mouse.pressed() && spawnShip.length <= 4){
     resource2 = imageCreation.createResourceTwo(width/1.3, height/1.4);
     imageCreation.createPlayerBase(width/1.15, height/1.15);
     imageCreation.createEnemyBase(width/10, height/7);
-    ship1 = imageCreation.createPlayerShips(width/2, height/2);
+    // ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
+
+  highlight();
+  if (spawnShip.length > 0){
+    for (let i = 0; i < spawnShip.length; i++){
+        if (spawnShip[i].highlight===true){
+        spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
+        } 
+        if (spawnShip[i].highlight===true && kb.released("space")){
+            console.log("loop stage 1")
+            spawnShip[i].highlight = false;
+            spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')    
+        } 
+        if (spawnShip[i].highlight===true && kb.pressing("space") && mouse.presses()){
+                console.log("ayo")
+                spawnShip[i].moveTo(mouse.x, mouse.y, 4);
+                spawnShip[i].friction = 10;
+                spawnShip[i].drag = 0;
+
+        }
+    }
+}
+
 }
 
 
