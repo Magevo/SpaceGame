@@ -242,41 +242,41 @@ if(mouse.pressed() && spawnShip.length <= 4){
         spawnShip[i].drag = 0;
 
       }
-  if (spawnShip.length > 0){
-    for (let i = 0; i < spawnShip.length; i++){
-        if (spawnShip[i].highlight===true){
-        spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
-        } 
-        if (spawnShip[i].highlight===true && kb.released("space")){
+      if (spawnShip.length > 0) {
+        for (let i = 0; i < spawnShip.length; i++) {
+          if (spawnShip[i].highlight === true) {
+            spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
+          }
+          if (spawnShip[i].highlight === true && kb.released("space")) {
             console.log("loop stage 1")
             spawnShip[i].highlight = false;
-            spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png') 
+            spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')
             spawnShip[i].friction = 10;
             spawnShip[i].drag = 1;
 
-        } 
-        if (spawnShip[i].highlight===true && kb.pressing("space") && mouse.presses()){
-                timer = 120;
-                console.log("ayo")
-                spawnShip[i].moveTo(mouse.x, mouse.y, 4);
-                spawnShip[i].rotateTo(mouse, 2, 90);
-                spawnShip[i].friction = 5;
-                spawnShip[i].drag = 0.6;
+          }
+          if (spawnShip[i].highlight === true && kb.pressing("space") && mouse.presses()) {
+            timer = 120;
+            console.log("ayo")
+            spawnShip[i].moveTo(mouse.x, mouse.y, 4);
+            spawnShip[i].rotateTo(mouse, 2, 90);
+            spawnShip[i].friction = 5;
+            spawnShip[i].drag = 0.6;
 
-        } else if (spawnShip[i].highlight===false){
-                  spawnShip[i].friction = 10;
-                  spawnShip[i].drag = 4;
+          } else if (spawnShip[i].highlight === false) {
+            spawnShip[i].friction = 10;
+            spawnShip[i].drag = 4;
+          }
+
+          if (timer == 0) {
+            spawnShip.friction = 10;
+            spawnShip.drag = 3;
+          }
         }
-
-        if (timer == 0){
-                spawnShip.friction = 10;
-                spawnShip.drag = 3;
-        } 
+      }
     }
   }
-
 }
-
 
 function drawScoreScreen() {
   //background image 
