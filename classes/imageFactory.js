@@ -8,7 +8,7 @@ let enemyShipFactor = 0.12;
 let playerShipFactor = 0.18;
 let resourceFactor = 0.18;
 let fighterShipsFactor = 0.04;
-let debugged = false;
+let debugged = true;
 
 
 class objectCreation {
@@ -118,9 +118,10 @@ class objectCreation {
       obj.text = obj.hp;
       obj.debug = debugged;
       obj.highlight = false;
-      obj.drag = 10;
+      //obj.offset.y = 30;
       obj.friction = 10;
       obj.rotationLock = true;
+      obj.overlaps(resource);
       this.createPlayerShipMade = true;
       
       return obj;
