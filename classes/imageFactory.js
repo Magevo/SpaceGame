@@ -121,7 +121,6 @@ class objectCreation {
       //obj.offset.y = 30;
       obj.friction = 10;
       obj.rotationLock = true;
-      obj.overlaps(resource);
       this.createPlayerShipMade = true;
       
       return obj;

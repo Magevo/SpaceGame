@@ -14,11 +14,12 @@ let startscreenBackgroundimg;
 let mainMenuBackgroundimg; 
 let scoreBackgroundimg; 
 
-let resource;
-let resource2;
-
 //font 
 let myFont; 
+
+
+//timer stuff
+let timer = 0;
 
 //scoreboard
 let scoreData;
@@ -68,7 +69,7 @@ function setup() {
 
 function draw() {
   background("red");
-
+  
   //Changing to different screens 
   if (currentGameScreen == START_SCREEN) {
     drawStartScreen();
@@ -165,6 +166,7 @@ function drawMainMenu() {
 function drawGameScreen() {
   //background image 
   // image(gameBackground, 0,0);
+  timer--;
 
   image(gameBackground, x1, 0, W, H)
   image(gameBackground, x2, 0, W, H)
@@ -190,20 +192,18 @@ function drawGameScreen() {
   //resources 
 
   //////TESTING SHIP SPAWNING / HP MANAGEMENT//////
-  if (imageCreation.createPlayerShipMade === false){
+/*if (imageCreation.createPlayerShipMade === false){
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
-}
+}*/
 
 
 if(mouse.pressed() && spawnShip.length <= 4){
-    ship1.hp --;
-    ship1.text = ship1.hp;
     let playerShip = imageCreation.createPlayerShips(mouse.x, mouse.y);
     spawnShip.push(playerShip);
     console.log(spawnShip[0].highlight)
-    if(ship1.hp == 0){
+    /*if(ship1.hp == 0){
       ship1.remove();
-    }
+    }*/
     }
 
 ////////////////////////////////////////////////////
@@ -215,7 +215,7 @@ if(mouse.pressed() && spawnShip.length <= 4){
     imageCreation.createEnemyBase(width/10, height/7);
     // ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
-  spawnShip.overlaps(resource, resource2);
+
   highlight();
   if (spawnShip.length > 0){
     for (let i = 0; i < spawnShip.length; i++){
@@ -231,6 +231,7 @@ if(mouse.pressed() && spawnShip.length <= 4){
 
         } 
         if (spawnShip[i].highlight===true && kb.pressing("space") && mouse.presses()){
+                timer = 120;
                 console.log("ayo")
                 spawnShip[i].moveTo(mouse.x, mouse.y, 4);
                 spawnShip[i].rotateTo(mouse, 2, 90);
@@ -242,9 +243,9 @@ if(mouse.pressed() && spawnShip.length <= 4){
                   spawnShip[i].drag = 4;
         }
 
-        if (spawnShip[i].colliding(spawnShip[i]) > 0){
+        if (timer == 0){
                 spawnShip.friction = 10;
-                spawnShip.drag = 10;
+                spawnShip.drag = 3;
         } 
     }
 }
