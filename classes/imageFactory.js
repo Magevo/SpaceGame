@@ -119,6 +119,7 @@ class objectCreation {
       obj.debug = debugged;
       obj.highlight = false;
       obj.drag = 10;
+      obj.offset.y = 10;
       obj.friction = 10;
       obj.rotationLock = true;
       this.createPlayerShipMade = true;
