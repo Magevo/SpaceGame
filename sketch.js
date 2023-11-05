@@ -216,21 +216,36 @@ if(mouse.pressed() && spawnShip.length <= 4){
   highlight();
   if (spawnShip.length > 0){
     for (let i = 0; i < spawnShip.length; i++){
+      let mouseX;
+      let mouseY;
         if (spawnShip[i].highlight===true){
         spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
         } 
         if (spawnShip[i].highlight===true && kb.released("space")){
             console.log("loop stage 1")
             spawnShip[i].highlight = false;
-            spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')    
+            spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png') 
+            spawnShip[i].friction = 10;
+            spawnShip[i].drag = 4;
+
         } 
         if (spawnShip[i].highlight===true && kb.pressing("space") && mouse.presses()){
                 console.log("ayo")
-                spawnShip[i].moveTo(mouse.x, mouse.y, 4);
-                spawnShip[i].friction = 10;
-                spawnShip[i].drag = 0;
+                mouseX = mouse.x;
+                mouseY = mouse.y;
+                spawnShip[i].rotateTo(mouseX, mouseY, 1);
+                //spawnShip[i].friction = 10;
+                //spawnShip[i].drag = 0.3;
 
+        } else if (spawnShip[i].highlight===false){
+                  spawnShip[i].friction = 10;
+                  spawnShip[i].drag = 4;
         }
+
+        if (spawnShip[i].collided(spawnShip[i])){
+                spawnShip[i].drag = 0.3;
+                
+        } 
     }
 }
 

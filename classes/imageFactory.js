@@ -56,6 +56,7 @@ class objectCreation {
       obj.img = this.getImageByID("resourceOne");
       obj.resource = 10;
       obj.textSize = 15;
+      obj.textColour = 'red';
       obj.h = 35;
       obj.w = 35;
       obj.collider = 'static';
@@ -69,6 +70,7 @@ class objectCreation {
       obj.image = this.getImageByID("resourceTwo");
       obj.resource = 5;
       obj.textSize = 10;
+      obj.textColour = 'red';
       obj.h = 40;
       obj.w = 40;
       obj.collider = 'static';
@@ -82,6 +84,7 @@ class objectCreation {
       obj.image = this.getImageByID("playerBase");
       obj.hp = 20;
       obj.textSize = 10;
+      obj.textColour = 'red';
       obj.h = 70;
       obj.w = 140;
       obj.collider = 'static';
@@ -96,6 +99,7 @@ class objectCreation {
       obj.image = this.getImageByID("enemyBase");
       obj.hp = 20;
       obj.textSize = 10;
+      obj.textColour = 'red';
       obj.h = 85;
       obj.w = 90;
       obj.text = obj.hp;
@@ -110,6 +114,7 @@ class objectCreation {
       obj.h = 45;
       obj.w = 30;
       obj.textSize = 10;
+      obj.textColour = 'red';
       obj.text = obj.hp;
       obj.debug = debugged;
       obj.highlight = false;
@@ -126,6 +131,7 @@ class objectCreation {
       obj.image = this.getImageByID("enemyShips");
       obj.hp = 4;
       obj.textSize = 10;
+      obj.textColour = 'red';
       obj.text = obj.hp;
       obj.debug = debugged;
       return obj;
@@ -135,7 +141,7 @@ class objectCreation {
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("shotRound");
       obj.debug = debugged;
-      return obj;
+      return obj;  
     }
   }
   
