@@ -203,16 +203,16 @@ function drawGameScreen() {
 }
 
 
-if(mouse.pressed() && spawnShip.length <= 4){
-    ship1.hp --;
+  if (mouse.pressed() && spawnShip.length <= 4) {
+    ship1.hp--;
     ship1.text = ship1.hp;
     let playerShip = imageCreation.createPlayerShips(mouse.x, mouse.y);
     spawnShip.push(playerShip);
     console.log(spawnShip[0].highlight)
-    if(ship1.hp == 0){
+    if (ship1.hp == 0) {
       ship1.remove();
     }
-    }
+  }
 
 ////////////////////////////////////////////////////
 
