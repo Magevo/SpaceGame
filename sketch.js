@@ -26,6 +26,14 @@ let firstSelect = [];
 // let selectionArray = [];
 // let highlightSprite;
 
+//healthbar
+/*
+let playerBaseHealth = 20; 
+let enemyBaseHealth = 20;
+let playerBaseMaxHealth = 20; 
+let enemyBaseMaxHealth = 20; 
+*/
+
 //Canvas size 
 const width = 1000;
 const height = 750;
@@ -57,14 +65,15 @@ function preload() {
 
 function setup() {
   new Canvas(width, height);
-  //font 
-
+  
+  //ships and highlighter groups 
   spawnShip = new Group();
   highlighter = new Group();
+  
 }
 
 function draw() {
-  background("red");
+  background("black");
 
   //Changing to different screens 
   if (currentGameScreen == START_SCREEN) {
@@ -117,7 +126,6 @@ function drawStartScreen() {
     currentGameScreen = MAIN_MENU;
   }
 
-  
   //background sound
 
   
@@ -160,7 +168,7 @@ function drawMainMenu() {
 }
 
 function drawGameScreen() {
-  //background image 
+  //background image and image moving
   // image(gameBackground, 0,0);
 
   image(gameBackground, x1, 0, W, H)
@@ -214,25 +222,25 @@ if(mouse.pressed() && spawnShip.length <= 4){
   }
 
   highlight();
-  if (spawnShip.length > 0){
-    for (let i = 0; i < spawnShip.length; i++){
-        if (spawnShip[i].highlight===true){
+  if (spawnShip.length > 0) {
+    for (let i = 0; i < spawnShip.length; i++) {
+      if (spawnShip[i].highlight === true) {
         spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
-        } 
-        if (spawnShip[i].highlight===true && kb.released("space")){
-            console.log("loop stage 1")
-            spawnShip[i].highlight = false;
-            spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')    
-        } 
-        if (spawnShip[i].highlight===true && kb.pressing("space") && mouse.presses()){
-                console.log("ayo")
-                spawnShip[i].moveTo(mouse.x, mouse.y, 4);
-                spawnShip[i].friction = 10;
-                spawnShip[i].drag = 0;
+      }
+      if (spawnShip[i].highlight === true && kb.released("space")) {
+        console.log("loop stage 1")
+        spawnShip[i].highlight = false;
+        spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')
+      }
+      if (spawnShip[i].highlight === true && kb.pressing("space") && mouse.presses()) {
+        console.log("ayo")
+        spawnShip[i].moveTo(mouse.x, mouse.y, 4);
+        spawnShip[i].friction = 10;
+        spawnShip[i].drag = 0;
 
-        }
+      }
     }
-}
+  }
 
 }
 
