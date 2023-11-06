@@ -1,5 +1,3 @@
-
-
 function preload(){
  menuPreload();
  shipControllerPreload();
@@ -15,14 +13,21 @@ function draw() {
 
   if (currentGameScreen == START_SCREEN) {
     drawStartScreen();
-  } else if (currentGameScreen == MAIN_MENU) {
+  } 
+  
+  else if (currentGameScreen == MAIN_MENU) {
     drawMainMenu();
-  } else if (currentGameScreen == GAME) {
+  } 
+  
+  else if (currentGameScreen == GAME) {
     drawGameScreen();
     shipControllerDraw();
-    highlight();
+    Highlight();
     checkhighlighted();
-  } else if (currentGameScreen == SCORE) {
+
+  } 
+  
+  else if (currentGameScreen == SCORE) {
     drawScoreScreen();
   }
 

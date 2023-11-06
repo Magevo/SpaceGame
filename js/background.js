@@ -6,7 +6,7 @@ const MAIN_MENU = 1;
 const GAME = 2;
 const SCORE = 3;
 
-let currentGameScreen = MAIN_MENU;
+let currentGameScreen = GAME;
 
 //background images 
 let gameBackground;
@@ -50,20 +50,6 @@ function menuPreload() {
   
   }
 
-// function menuSelection() {
-//     background("black");
-  
-//     //Changing to different screens 
-//     if (currentGameScreen == START_SCREEN) {
-//       drawStartScreen();
-//     } else if (currentGameScreen == MAIN_MENU) {
-//       drawMainMenu();
-//     } else if (currentGameScreen == GAME) {
-//       drawGameScreen();
-//     } else if (currentGameScreen == SCORE) {
-//       drawScoreScreen();
-//     }
-//   }
   
   function gotoMainMenu() {
     currentGameScreen = MAIN_MENU; //go to main menu 

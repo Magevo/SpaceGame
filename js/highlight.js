@@ -1,49 +1,57 @@
 let firstSelect = [];
+let highlightStarted = false;
+
 let highlightSprite;
 
-function highlightPreload(){
-    highlighter = new Group();
-}
+function Highlight(){
 
-function  highlight(){
-    // Grabs mouse X and Y upon press and stores it in array
-    if (kb.pressing("space")){
-        if (mouse.presses()){
-            let x = mouse.x;
-            let y = mouse.y;
-
-            firstSelect.push(x,y);
-        } 
-
-        // Constantly updates and draws a sprite to follow the x and y of the mouse whilst active (Deletes the pushed value at the end of each loop)
-        if(mouse.pressing()){
-            
-            
-            let x1 = firstSelect[0]
-            let y1 = firstSelect[1]
-            let x2 = mouse.x
-            let y2 = mouse.y
-
-            if (highlightSprite!=undefined){
-                highlightSprite.remove();
-            }
-
-            highlightSprite = new highlighter.Sprite((x1+(x2-x1)/2),y1+(y2-y1)/2,x2-x1,y2-y1)
-
-            highlighter.color = "rgba(255,0,0,0.1)";
-            highlighter.life = 1;
-            highlighter.overlaps(allSprites);
-        }
-
-        if(mouse.released()){
-
-            for (let i = 0; i < spawnShip.length; i++){
-                if (highlighter.overlaps(spawnShip[i])) spawnShip[i].highlight = true;
-            }
+  if (highlightStarted===false && mouse.presses()){
+    firstSelect.push(mouse.x,mouse.y);
     
-            firstSelect = [];        
-        } 
+    highlightStarted = true;
+    highlightSprite = new Sprite()
+
+    
+
+  }
+
+  if (highlightStarted===true){
+    let x = (firstSelect[0] + (mouse.x - firstSelect[0]) / 2);
+    let y = firstSelect[1] + (mouse.y - firstSelect[1]) / 2;
+
+    let w = mouse.x - firstSelect[0]
+    let h = mouse.y - firstSelect[1]
+
+    if (w==0){
+      w=1
     }
+
+    if (h==0){
+      h=1
+    }
+        
+    highlightSprite.x = x
+    highlightSprite.y = y
+    highlightSprite.w = w
+    highlightSprite.h = h
+
+    highlightSprite.overlaps(allSprites);
+    highlightSprite.color = "rgba(255,0,0,0.1)";
+
+    for (let i = 0; i < spawnShip.length; i++){
+      if (highlightSprite.overlaps(spawnShip[i])) spawnShip[i].highlight = true;
+  }
+
+    if(mouse.released()){
+
+      
+      highlightSprite.remove();
+  
+      firstSelect = [];  
+      highlightStarted = false;      
+    } 
+
+  }     
 }
 
 function checkhighlighted(){ //Check if highlight is true and change image, hold d to deselect, hold m  and click to move
@@ -53,7 +61,7 @@ function checkhighlighted(){ //Check if highlight is true and change image, hold
             spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
           }
           if (spawnShip[i].highlight === true && kb.released("space")) {
-            console.log("loop stage 1")
+            console.log("mouse released")
             spawnShip[i].highlight = false;
             spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')
             spawnShip[i].friction = 10;
@@ -62,7 +70,7 @@ function checkhighlighted(){ //Check if highlight is true and change image, hold
           }
           if (spawnShip[i].highlight === true && kb.pressing("space") && mouse.pressing()) {
             timer = 60;
-            console.log("ayo")
+            console.log("mouse pressing loop")
             spawnShip[i].moveTo(mouse.x, mouse.y, 4);
             spawnShip[i].rotateTo(mouse, 4, 90);
             spawnShip[i].friction = 5 ;

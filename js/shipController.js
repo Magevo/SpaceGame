@@ -22,19 +22,19 @@ function shipControllerDraw(){
         // ship1 = imageCreation.createPlayerShips(width/2, height/2);
       }
 
-    if (imageCreation.createPlayerShipMade === false){
-        ship1 = imageCreation.createPlayerShips(width/2, height/2);
-    }
+    // if (imageCreation.createPlayerShipMade === false){
+    //     ship1 = imageCreation.createPlayerShips(width/2, height/2);
+    // }
 
 
-    if(mouse.pressed() && spawnShip.length <= 4){
-        ship1.hp --;
-        ship1.text = ship1.hp;
-        let playerShip = imageCreation.createPlayerShips(mouse.x, mouse.y);
+    if(kb.pressed("a") && spawnShip.length <= 4){
+        // ship1.hp --;
+        // ship1.text = ship1.hp;
+        let playerShip = imageCreation.createPlayerShips(375, 500);
         spawnShip.push(playerShip);
         }
 
-    if(ship1.hp == 0){
-        remove;
-    }
+    // if(ship1.hp == 0){
+    //     remove;
+    // }
 }
