@@ -10,23 +10,20 @@ function Highlight(){
     
     highlightStarted = true;
     highlightSprite = new Sprite()
-
-    
-
   }
 
   if (highlightStarted===true){
     let x = (firstSelect[0] + (mouse.x - firstSelect[0]) / 2);
-    let y = firstSelect[1] + (mouse.y - firstSelect[1]) / 2;
+    let y = (firstSelect[1] + (mouse.y - firstSelect[1]) / 2);
 
-    let w = mouse.x - firstSelect[0]
-    let h = mouse.y - firstSelect[1]
+    let w = abs(mouse.x - firstSelect[0])
+    let h = abs(mouse.y - firstSelect[1])
 
-    if (w==0){
+    if (w===0){
       w=1
-    }
+    } 
 
-    if (h==0){
+    if (h===0){
       h=1
     }
         
@@ -34,6 +31,8 @@ function Highlight(){
     highlightSprite.y = y
     highlightSprite.w = w
     highlightSprite.h = h
+
+    console.log(w)
 
     highlightSprite.overlaps(allSprites);
     highlightSprite.color = "rgba(255,0,0,0.1)";
