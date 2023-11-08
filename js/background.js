@@ -1,5 +1,5 @@
-const W = 1000
-const H = 750
+const W = 1500
+const H = 900
 
 const START_SCREEN = 0;
 const MAIN_MENU = 1;
@@ -8,27 +8,16 @@ const SCORE = 3;
 
 let currentGameScreen = GAME;
 
-//background images 
-let gameBackground;
-let startscreenBackgroundimg;
-let mainMenuBackgroundimg; 
-let scoreBackgroundimg; 
-
 //font 
-let myFont; 
-
+// let myFont; 
 
 //timer stuff
 let timer = 0;
 
-//scoreboard
-let scoreData;
-let data = [];
-
 //ScrollSpeed
 let scrollspeed = 0.5;
 let x1 = 0;
-let x2 = 1000;
+let x2 = W;
 
 function menuPreload() {
     //preload background image 

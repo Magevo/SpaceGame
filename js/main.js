@@ -23,7 +23,6 @@ function draw() {
     drawGameScreen();
     shipControllerDraw();
     Highlight();
-    checkhighlighted();
 
   } 
   
