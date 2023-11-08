@@ -1,9 +1,12 @@
 let firstSelect = [];
 let highlightStarted = false;
 
-let highlightSprite;
-
 function Highlight(){
+  initiateHighlight();
+  checkhighlighted();
+}
+
+function initiateHighlight(){
 
   if (highlightStarted===false && mouse.presses()){
     firstSelect.push(mouse.x,mouse.y);
@@ -32,8 +35,6 @@ function Highlight(){
     highlightSprite.w = w
     highlightSprite.h = h
 
-    console.log(w)
-
     highlightSprite.overlaps(allSprites);
     highlightSprite.color = "rgba(255,0,0,0.1)";
 
@@ -54,7 +55,8 @@ function Highlight(){
 }
 
 function checkhighlighted(){ //Check if highlight is true and change image, hold d to deselect, hold m  and click to move
-    if (spawnShip.length > 0) {
+      
+  if (spawnShip.length > 0) {
         for (let i = 0; i < spawnShip.length; i++) {
           if (spawnShip[i].highlight === true) {
             spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')

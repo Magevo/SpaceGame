@@ -4,11 +4,12 @@
 
 /////STILL TRYING TO FIGURE OUT HOW TO CALL STUFF OUT OF THE FACTORY EFFICIENTLY//////
 
-let enemyShipFactor = 0.12;
-let playerShipFactor = 0.18;
-let resourceFactor = 0.18;
-let fighterShipsFactor = 0.04;
-let debugged = true;
+// let enemyShipFactor = 0.12;
+// let playerShipFactor = 0.18;
+// let resourceShipFactor = 0.5;
+// let resourceFactor = 0.18;
+// let fighterShipsFactor = 0.04;
+let debugged = false;
 
 
 class objectCreation {
@@ -27,6 +28,7 @@ class objectCreation {
       this.images.push({id: "enemyBase", path: "assets/base/enemy_base.png"})
       this.images.push({id: "playerShips", path: "assets/combatShips/playerShips/Ship_LVL_5.png"})
       this.images.push({id: "enemyShips", path: "assets/combatShips/enemyShips/Ship_LVL_1.png"})
+      this.images.push({id: "resourceShips", path: "assets/combatShips/playerShips/Ship_LVL_1_TEST.png"})
       this.images.push({id: "shotRound", path: "assets/shots/Rocket_Effect_01.png"})
   
       ////Not sure if important, keep just in case///
@@ -68,7 +70,7 @@ class objectCreation {
     createResourceTwo(x, y){
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("resourceTwo");
-      obj.resource = 5;
+      obj.resource = 200;
       obj.textSize = 10;
       obj.textColour = 'red';
       obj.h = 40;
@@ -113,12 +115,32 @@ class objectCreation {
       obj.hp = 4;
       obj.h = 45;
       obj.w = 30;
+      obj.collider = 'k';
       obj.textSize = 10;
       obj.textColour = 'red';
       obj.text = obj.hp;
       obj.debug = debugged;
       obj.highlight = false;
       //obj.offset.y = 30;
+      obj.friction = 10;
+      obj.rotationLock = true;
+      this.createPlayerShipMade = true;
+      
+      return obj;
+    }
+
+    createResourceShips(x, y){
+      let obj = this.createObject(x, y);
+      obj.image = this.getImageByID("resourceShips");
+      obj.resource = 0;
+      obj.h = 35;
+      obj.w = 30;
+      obj.textSize = 10;
+      obj.textColour = 'red';
+      obj.collider = 'dynamic';
+      obj.text = obj.resource;
+      obj.debug = debugged;
+      obj.highlight = false;
       obj.friction = 10;
       obj.rotationLock = true;
       this.createPlayerShipMade = true;
