@@ -29,6 +29,9 @@ let scrollspeed = 0.5;
 let x1 = 0;
 let x2 = 1000;
 
+//background sound
+let backgroundSound;
+
 function menuPreload() {
     //preload background image 
     startscreenBackgroundimg = loadImage('./assets/backgrounds/startscreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
@@ -37,7 +40,8 @@ function menuPreload() {
     scoreBackgroundimg = loadImage('./assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   
     //preload sounds 
-  
+    backgroundSound = loadSound('assets/ObservingTheStar.ogg'); /* Credit to yd. Sourced from https://opengameart.org/content/another-space-background-track */
+
     //preload font 
     myFont = loadFont('assets/Audiowide-Regular.ttf');
   
@@ -45,6 +49,11 @@ function menuPreload() {
     scoreData = loadStrings('data/score.txt');
   
   }
+
+function menuSetup(){
+  backgroundSound.setVolume(0.05);
+  backgroundSound.play();
+}
 
   function gotoMainMenu() {
     currentGameScreen = MAIN_MENU; //go to main menu 
@@ -72,19 +81,22 @@ function drawStartScreen() {
   
     //Orange Shadow
     fill("Orange");
-    text("Space", Mid, Line1);
-    text("Wars", Mid, Line2);
+    text("Journey Across", Mid, Line1);
+    text("The Meteors", Mid, Line2);
   
     //Blue Text
     fill(0, 213, 255);
-    text("Space", Mid + 5, Line1 + 0);
-    text("Wars", Mid + 5, Line2 + 0);
+    text("Journey Across", Mid + 5, Line1 + 0);
+    text("The Meteors", Mid + 5, Line2 + 0);
   
     //keyboard function to go to main menu 
     if (keyIsPressed){
       currentGameScreen = MAIN_MENU;
     }
-  
+    fill("red");
+    textSize(40);
+    text("Press any key to continue", W/2, H/1.5);
+
     //background sound
   
     
@@ -98,12 +110,12 @@ function drawMainMenu() {
     customButtons();
     
     //text 
-    let Line1 = 140
-    let Line2 = Line1 + 100
-    let Mid = 400
+    let Line1 = 140;
+    let Line2 = Line1 + 100;
+    let Mid = 400;
   
-    let Line3 = 400
-    let Line4 = Line3 + 150
+    let Line3 = 400;
+    let Line4 = Line3 + 150;
   
     textFont(myFont);
     textSize(60);
@@ -111,29 +123,29 @@ function drawMainMenu() {
   
     //Orange Shadow
     fill("Orange");
-    text("Space", Mid, Line1);
-    text("Wars", Mid, Line2);
+    text("Journey Across", Mid, Line1);
+    text("The Meteors", Mid, Line2);
   
     //Black Shadow Start + Exit
     fill("red")
-    text("Start", Mid, Line3 + 10)
-    text("Score", Mid,Line4 + 10)
+    text("Start", Mid, Line3 + 10);
+    text("Score", Mid,Line4 + 10);
    
     //Blue Text
     fill(0, 213, 255);
-    text("Space", Mid + 5, Line1 + 0);
-    text("Wars", Mid + 5, Line2 + 0);
+    text("Journey Across", Mid + 5, Line1 + 0);
+    text("The Meteors", Mid + 5, Line2 + 0);
   
   }
   
   function drawGameScreen() {
     //background image and image moving
      
-    image(gameBackground, x1, 0, W, H)
-    image(gameBackground, x2, 0, W, H)
+    image(gameBackground, x1, 0, W, H);
+    image(gameBackground, x2, 0, W, H);
   
-    x1 += scrollspeed
-    x2 += scrollspeed
+    x1 += scrollspeed;
+    x2 += scrollspeed;
   
     if (x1 > W) {
       x1 = -(W) + 10;
