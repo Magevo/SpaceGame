@@ -6,6 +6,7 @@ function preload(){
 function setup() {
   new Canvas(W, H);
   shipControllerSetup();
+  menuSetup();
 }
 
 function draw() {
