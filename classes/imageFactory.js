@@ -163,6 +163,7 @@ class objectCreation {
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("shotRound");
       obj.debug = debugged;
+      obj.scale = 0.25;
       return obj;  
     }
   }
