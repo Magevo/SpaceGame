@@ -1,7 +1,7 @@
 let imageCreation = new objectCreation();
-let sendBack = false;
+let travelSwitch = 0;
 let spriteCheck = 0;
-let totalResouce = 0;
+let totalResource = 0;
 
 
 function shipControllerPreload (){
@@ -56,30 +56,87 @@ function resourceShipController(){
     //move resouce Ship to and from player base collecting resource
     if(resourceShip.length > 0){
 
-        resourceShip[0].moveTo(resource2.x, resource2.y, 5);
+        if(travelSwitch == 0){
+            // console.log("Stage 1");
+            resourceShip[0].moveTo(resource2.x, resource2.y, 5);
+        }
+        
+        if(resourceShip[0].colliding(resource2) >= 1){
+            // console.log("Stage 2");
+            travelSwitch = 1;
+        }
+        
+        if (travelSwitch == 1){
+            resourceShip[0].moveTo(resource2.x, resource2.y, 5)
+                if (frameCount % 4 == 1){
+                    resourceShip[0].resource++;
+                    resourceShip[0].text = resourceShip[0].resource;
+                    resource2.resource--;
+                    resource2.text = resource2.resource
+                }
 
-        if (resourceShip[0].colliding(resource2) >= 1 && (frameCount % 5 == 1)){
-            resourceShip[0].resource++;
-            resourceShip[0].text = resourceShip[0].resource;
-            resource2.resource--;
-            resource2.text = resource2.resource
-            sendBack = true;
-        }     
-
-        if (sendBack == true && resourceShip[0].resource == 20 ){
-            console.log("tester")
-            console.log
-            resourceShip[0].moveTo(PlayerBase.x, PlayerBase.y, 1.5);            
+                if (resourceShip[0].resource == 20){
+                    travelSwitch = 2;
+                }
+        }        
+    
+        if (travelSwitch == 2){
+            // console.log("stage 3")
+            resourceShip[0].moveTo(PlayerBase.x, PlayerBase.y, 5)
+            if (resourceShip[0].colliding(PlayerBase) >= 1){
+                travelSwitch = 3;
+                console.log("travel switch 3 active")
+            }
         }
 
-        if (resourceShip[0].colliding(PlayerBase) >= 1){
-            totalResouce = totalResouce + resourceShip[0].resource;
-            resourceShip[0].resource = 0
-        }
+        if (travelSwitch == 3){
+            // console.log("stage 4")
+            resourceShip[0].moveTo(PlayerBase.x, PlayerBase.y, 5)
+            if (frameCount % 5 == 1){
+                resourceShip[0].resource--;
+                resourceShip[0].text = resourceShip[0].resource;
+                totalResource ++;
+            }
 
-        if (resourceShip[0].colliding(PlayerBase) >= 1 && resourceShip[0].resource <=0){
-            sendBack = false;
+            if (resourceShip[0].resource == 0){
+                travelSwitch = 0
+            }
         }
+        
+        
+        
+        // resourceShip[0].moveTo(resource2.x, resource2.y, 5);
+        
+
+        // if (resourceShip[0].colliding(resource2) >= 1 && (frameCount % 5 == 1)){
+        //     resourceShip[0].resource++;
+        //     resourceShip[0].text = resourceShip[0].resource;
+        //     resource2.resource--;
+        //     resource2.text = resource2.resource
+        //     sendBack = 2;
+        // }     
+
+        // if (sendBack == 2 && resourceShip[0].resource == 20 ){
+            
+        //     console.log("sendBack")
+        //     resourceShip[0].moveTo(PlayerBase.x, PlayerBase.y, 1.5);            
+        // }
+
+
+        // if (sendBack == 2 && resourceShip[0].colliding(PlayerBase) >= 1 && (frameCount % 3 == 1)){
+            
+        //     totalResouce++;
+        //     resourceShip[0].resource--;
+        //     resourceShip[0].text = resourceShip[0].resource;
+        //     console.log("tester")
+            
+
+        // }
+
+        // if (resourceShip[0].colliding(PlayerBase) >= 1 && resourceShip[0].resource <=0){
+        //     sendBack = 1;
+        //     console.log("ayo")
+        // }
 
     }
 

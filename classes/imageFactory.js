@@ -9,7 +9,7 @@
 // let resourceShipFactor = 0.5;
 // let resourceFactor = 0.18;
 // let fighterShipsFactor = 0.04;
-let debugged = true;
+let debugged = false;
 
 
 class objectCreation {
@@ -137,6 +137,7 @@ class objectCreation {
       obj.w = 30;
       obj.textSize = 10;
       obj.textColour = 'red';
+      obj.collider = 'dynamic';
       obj.text = obj.resource;
       obj.debug = debugged;
       obj.highlight = false;
