@@ -6,7 +6,7 @@ const MAIN_MENU = 1;
 const GAME = 2;
 const SCORE = 3;
 
-let currentGameScreen = GAME;
+let currentGameScreen = START_SCREEN;
 
 //background images 
 let gameBackground;
@@ -16,7 +16,6 @@ let scoreBackgroundimg;
 
 //font 
 let myFont; 
-
 
 //timer stuff
 let timer = 0;
@@ -37,9 +36,6 @@ function menuPreload() {
     gameBackground = loadImage('./assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
     scoreBackgroundimg = loadImage('./assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
   
-    //preload player, enemy base, resources
-    // imageCreation.preload();
-    
     //preload sounds 
   
     //preload font 
@@ -50,7 +46,6 @@ function menuPreload() {
   
   }
 
-  
   function gotoMainMenu() {
     currentGameScreen = MAIN_MENU; //go to main menu 
   }
