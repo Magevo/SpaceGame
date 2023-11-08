@@ -1,0 +1,10 @@
+let resourceTimer = 0;
+let resourceCounter;
+
+resourceTimer--
+
+function resourceGather(){
+    if(spawnShip[i].overlaps(resource1)){
+    
+    }
+}
