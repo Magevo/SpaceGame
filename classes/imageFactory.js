@@ -70,7 +70,7 @@ class objectCreation {
     createResourceTwo(x, y){
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("resourceTwo");
-      obj.resource = 5;
+      obj.resource = 200;
       obj.textSize = 10;
       obj.textColour = 'red';
       obj.h = 40;
@@ -132,15 +132,14 @@ class objectCreation {
     createResourceShips(x, y){
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("resourceShips");
-      obj.hp = 4;
+      obj.resource = 0;
       obj.h = 35;
       obj.w = 30;
       obj.textSize = 10;
       obj.textColour = 'red';
-      obj.text = obj.hp;
+      obj.text = obj.resource;
       obj.debug = debugged;
       obj.highlight = false;
-      //obj.offset.y = 30;
       obj.friction = 10;
       obj.rotationLock = true;
       this.createPlayerShipMade = true;

@@ -1,4 +1,4 @@
-const W = 1500
+const W = 1200
 const H = 900
 
 const START_SCREEN = 0;
@@ -6,17 +6,23 @@ const MAIN_MENU = 1;
 const GAME = 2;
 const SCORE = 3;
 
-let currentGameScreen = START_SCREEN;
+let currentGameScreen = GAME;
+
+//background images 
+let gameBackground;
+let startscreenBackgroundimg;
+let mainMenuBackgroundimg; 
+let scoreBackgroundimg; 
 
 //font 
-<<<<<<< HEAD
-// let myFont; 
-=======
 let myFont; 
->>>>>>> 196a0901fa488c09ad05e3186593aef0b2223438
 
 //timer stuff
 let timer = 0;
+
+//scoreboard
+let scoreData;
+let data = [];
 
 //ScrollSpeed
 let scrollspeed = 0.5;
