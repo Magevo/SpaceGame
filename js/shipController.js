@@ -12,6 +12,7 @@ function shipControllerSetup (){
     spawnShip = new Group();
     highlighter = new Group();
     resourceShip = new Group();
+    spawnBullet = new Group();
     spriteCheck = frameCount; 
 }
 
@@ -19,6 +20,7 @@ function shipControllerDraw() {
     spawnBaseGame();
     fighterShipController();
     resourceShipController();
+    playerShipShooting();
 
 }
 
@@ -41,6 +43,17 @@ function fighterShipController(){
         spawnShip.push(playerShip);
         }
 
+}
+
+function playerShipShooting(){
+    for(let i = 0; i < spawnShip.length; i++){
+        if (dist(spawnShip[i].x, spawnShip[i].y, EnemyBase.x, EnemyBase.y)  < 100){
+            let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
+            spawnedBullet.overlaps(EnemyBase);
+            spawnedBullet.overlaps(spawnShip[i])
+            spawnBullet.push(spawnedBullet);
+        }
+    }
 }
 
 function resourceShipController(){

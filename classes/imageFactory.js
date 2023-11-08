@@ -29,7 +29,7 @@ class objectCreation {
       this.images.push({id: "playerShips", path: "assets/combatShips/playerShips/Ship_LVL_5.png"})
       this.images.push({id: "enemyShips", path: "assets/combatShips/enemyShips/Ship_LVL_1.png"})
       this.images.push({id: "resourceShips", path: "assets/combatShips/playerShips/Ship_LVL_1_TEST.png"})
-      this.images.push({id: "shotRound", path: "assets/shots/Rocket_Effect_01.png"})
+      this.images.push({id: "shotRound", path: "assets/combatShips/shots/Rocket_Effect_01.png"})
   
       ////Not sure if important, keep just in case///
       /*for(let img of this.images){
@@ -115,7 +115,7 @@ class objectCreation {
       obj.hp = 4;
       obj.h = 45;
       obj.w = 30;
-      obj.collider = 'k';
+      //obj.collider = 'k';
       obj.textSize = 10;
       obj.textColour = 'red';
       obj.text = obj.hp;
