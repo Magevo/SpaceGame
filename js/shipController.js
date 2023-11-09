@@ -85,7 +85,7 @@ function resourceShipController(){
             resourceShip[0].moveTo(PlayerBase.x, PlayerBase.y, 5)
             if (resourceShip[0].colliding(PlayerBase) >= 1){
                 travelSwitch = 3;
-                console.log("travel switch 3 active")
+                // console.log("travel switch 3 active")
             }
         }
 

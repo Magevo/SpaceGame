@@ -6,7 +6,7 @@ const MAIN_MENU = 1;
 const GAME = 2;
 const SCORE = 3;
 
-let currentGameScreen = GAME;
+let currentGameScreen = SCORE;
 
 //background images 
 let gameBackground;
