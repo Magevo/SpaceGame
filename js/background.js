@@ -26,10 +26,14 @@ let timer = 0;
 let scoreData;
 let data = [];
 
+//end game text
+let endGameCredit;
+
 //ScrollSpeed
 let scrollspeed = 0.5;
 let x1 = 0;
 let x2 = W;
+let y = 0;
 
 //background sound
 let backgroundSound;
@@ -50,7 +54,7 @@ function menuPreload() {
   
     //preload score data 
     scoreData = loadStrings('data/score.txt');
-  
+    endGameCredit = loadStrings('data/endgame.txt');
   }
 
 function menuSetup(){
@@ -203,14 +207,17 @@ function drawScoreScreen() {
 }
 
 function drawEndGameScreen(){
- //background image 
- image(endGameBackgroundimg, 0,0);
- 
- let y = 800
- //scroll text 
- text("The End", W/2, y) 
- y++
- 
+  //background image 
+  image(endGameBackgroundimg, 0, 0);
+
+
+  //scroll text 
+  textFont(myFont);
+  textSize(50);
+  textAlign(CENTER);
+  fill('yellow');
+  for (let i = 0; i < )
+
 }
 
 function customButtons() {
