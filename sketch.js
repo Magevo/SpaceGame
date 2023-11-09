@@ -163,13 +163,13 @@ function drawMainMenu() {
   fill("red")
   text("Start", Mid, Line3 + 10)
   text("Score", Mid,Line4 + 10)
- 
+
   //Blue Text
   fill(0, 213, 255);
   text("Space", Mid + 5, Line1 + 0);
   text("Wars", Mid + 5, Line2 + 0);
 
-}
+} // CLOSED (drawMainMenu)
 
 function drawGameScreen() {
   //background image and image moving
@@ -199,23 +199,23 @@ function drawGameScreen() {
 
   //resources 
 
-  //////TESTING SHIP SPAWNING / HP MANAGEMENT//////
-/*if (imageCreation.createPlayerShipMade === false){
+  // ------- TESTING SHIP SPAWNING / HP MANAGEMENT ---------- //
+  /*
+  if (imageCreation.createPlayerShipMade === false){
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
-}*/
+  }
+  */
 
-
-if(mouse.pressed() && spawnShip.length <= 4){
+  if(mouse.pressed() && spawnShip.length <= 4){
     let playerShip = imageCreation.createPlayerShips(mouse.x, mouse.y);
     spawnShip.push(playerShip);
     console.log(spawnShip[0].highlight)
     /*if(ship1.hp == 0){
       ship1.remove();
     }*/
-    }
+  }
 
-////////////////////////////////////////////////////
-
+  // ----------------------------------------------------------- //
   if (imageCreation.createPlayerBaseMade === false){
     resource = imageCreation.createResourceOne(width/1.1, height/1.4);
     resource2 = imageCreation.createResourceTwo(width/1.3, height/1.4);
@@ -224,61 +224,76 @@ if(mouse.pressed() && spawnShip.length <= 4){
     // ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
 
+  // Calling the class 'highlight' to run
   highlight();
-  if (spawnShip.length > 0) {
-    for (let i = 0; i < spawnShip.length; i++) {
+
+  if (spawnShip.length > 0) { // OPEN (purple if)
+
+    for (let i = 0; i < spawnShip.length; i++) { // OPEN (blue for)
       spawnShip[i].overlaps(resource);
       spawnShip[i].overlaps(resource2);
-      if (spawnShip[i].highlight === true) {
+
+      if (spawnShip[i].highlight === true) { // OPEN
         spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
-      }
-      if (spawnShip[i].highlight === true && kb.released("space")) {
+      } // CLOSED
+
+      if (spawnShip[i].highlight === true && kb.released("space")) { // OPEN
         console.log("loop stage 1")
         spawnShip[i].highlight = false;
         spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')
-      }
-      if (spawnShip[i].highlight === true && kb.pressing("space") && mouse.presses()) {
+      } // CLOSED 
+
+      if (spawnShip[i].highlight === true && kb.pressing("space") && mouse.presses()) { // OPEN
         console.log("ayo")
         spawnShip[i].moveTo(mouse.x, mouse.y, 4);
         spawnShip[i].friction = 10;
         spawnShip[i].drag = 1;
+      } // CLOSED
 
-      }
-      if (spawnShip.length > 0) {
-        for (let i = 0; i < spawnShip.length; i++) {
-          if (spawnShip[i].highlight === true) {
+      if (spawnShip.length > 0) { // OPEN (yellow if)
+
+        for (let i = 0; i < spawnShip.length; i++) { // OPEN (purple for)
+
+          if (spawnShip[i].highlight === true) { // OPEN
             spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5_H.png')
-          }
-          if (spawnShip[i].highlight === true && kb.released("space")) {
+          } // CLOSED
+
+          if (spawnShip[i].highlight === true && kb.released("space")) { // OPEN
             console.log("loop stage 1")
             spawnShip[i].highlight = false;
             spawnShip[i].img = ('./assets/combatShips/playerShips/Ship_LVL_5.png')
             spawnShip[i].friction = 10;
             spawnShip[i].drag = 1;
+          } // CLOSED
 
-          }
-          if (spawnShip[i].highlight === true && kb.pressing("space") && mouse.pressing()) {
+          if (spawnShip[i].highlight === true && kb.pressing("space") && mouse.pressing()) { // OPEN
             timer = 60;
             console.log("ayo")
             spawnShip[i].moveTo(mouse.x, mouse.y, 4);
             spawnShip[i].rotateTo(mouse, 4, 90);
             spawnShip[i].friction = 5 ;
             spawnShip[i].drag = 0.7;
-
-          } else if (spawnShip[i].highlight === false) {
+          } // CLOSED 
+          
+          else if (spawnShip[i].highlight === false) { // OPEN
             spawnShip[i].friction = 10;
             spawnShip[i].drag = 4;
-          }
+          } // CLOSED
 
-          if (timer == 0) {
+          if (timer == 0) { // OPEN
             spawnShip[i].friction = 5;
             spawnShip[i].drag++;
-          }
-        }
-      }
-    }
-  }
-}
+          } // CLOSED
+
+        } // CLOSED (purple for)
+
+      } // CLOSED (yellow if)
+
+    } // CLOSED (blue for)
+
+  } // CLOSED (purple if)
+
+} // CLOSED (drawGameScreen)
 
 function drawScoreScreen() {
   //background image 
@@ -287,8 +302,11 @@ function drawScoreScreen() {
   // array for scores 
   let boardX = 500; 
   let boardY = 200;
+
+  // Text style of scores
   textSize(40);
   fill('red');
+
   for (let i = 0; i < scoreData.length; i++) {
     text(scoreData[i], boardX, boardY);
     boardY += 40;
@@ -313,20 +331,21 @@ function drawScoreScreen() {
       textSize(60);
       textAlign(CENTER);
       text("Exit", 900, 700);
-    }
-  } 
+      }
+  }
+
   textFont(myFont);
   textSize(60);
   textAlign(CENTER);
 
-  fill('red')
+  fill('red');
   text("Exit", Mid,Line4 + 10);
 }
 
 function customButtons() {
   if (mouseX > 245 && mouseX < 545 && mouseY > 320 && mouseY < 420) {
     if (mouseIsPressed) {
-     gotoGame();
+    gotoGame();
 
     } else {
       noStroke();
@@ -338,8 +357,9 @@ function customButtons() {
       textSize(60);
       textAlign(CENTER);
       text("Start", 400, 400);
-    }
-  } else { }
+      }
+  }
+  // else { }
 
   if (mouseX > 100 && mouseX < 700 && mouseY > 470 && mouseY < 570) {
     if (mouseIsPressed) {
@@ -355,6 +375,6 @@ function customButtons() {
       textSize(60);
       textAlign(CENTER);
       text("Score", 400, 550);
-    }
+      }
   }
 }

@@ -12,6 +12,10 @@ function shipControllerSetup (){
     spawnShip = new Group();
     highlighter = new Group();
     resourceShip = new Group();
+    playerSpawnBullet = new Group();
+    playerSpawnBullet.overlaps(playerSpawnBullet);
+    //playerSpawnBullet.overlaps(enemySpawnBullet);
+    enemySpawnBullet = new Group();
     spriteCheck = frameCount; 
 }
 
@@ -19,7 +23,11 @@ function shipControllerDraw() {
     spawnBaseGame();
     fighterShipController();
     resourceShipController();
-
+    playerShipShooting();
+    if(kb.pressed("p")){
+        EnemyBase.x = mouse.x;
+        EnemyBase.y = mouse.y;
+    }
 }
 
 function spawnBaseGame(){
@@ -43,9 +51,25 @@ function fighterShipController(){
 
 }
 
+function playerShipShooting(){
+    for(let i = 0; i < spawnShip.length; i++){
+        if (dist(spawnShip[i].x, spawnShip[i].y, EnemyBase.x, EnemyBase.y)  < 300){
+            if (frameCount % 50 == 1){
+                let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
+                spawnedBullet.rotation = spawnShip[i].rotation;
+                spawnedBullet.rotateTo(EnemyBase, 20, 90);
+                spawnedBullet.overlaps(EnemyBase);
+                spawnedBullet.overlaps(spawnShip);
+                spawnedBullet.moveTo(EnemyBase.x, EnemyBase.y, 1);
+                playerSpawnBullet.push(spawnedBullet);
+            }
+        }
+    }
+}
+
 function resourceShipController(){
 
-    //make the resource Ship on pressing S
+    //maake the resource Ship on pressing S
     if(kb.pressed("s")){
         let ship = imageCreation.createResourceShips(PlayerBase.x, PlayerBase.y);
         resourceShip.push(ship);

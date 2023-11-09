@@ -16,22 +16,26 @@ function draw() {
 
   if (currentGameScreen == START_SCREEN) {
     drawStartScreen();
-  } 
-  
+  }
+
   else if (currentGameScreen == MAIN_MENU) {
     drawMainMenu();
-  } 
-  
+  }
+
   else if (currentGameScreen == GAME) {
     drawGameScreen();
     shipControllerDraw();
     Highlight();
     guiStart();
 
-  } 
-  
+  }
+
   else if (currentGameScreen == SCORE) {
     drawScoreScreen();
+  }
+
+  else if (currentGameScreen == END_GAME) {
+    drawEndGameScreen();
   }
 
 }

@@ -2,17 +2,17 @@ const W = 1000
 const H = 750
 
 let spawnCheck = false;
+
 let ship1;
+
 let resource;
 let resource2;
 
-
+// Groups for the player, the enemy, and resources
 let playerShipsGroup, enemyShipsGroup, resourceGroup;
 
+// Variable to call a new creation of the class 'objectCreation()'
 let imageCreation = new objectCreation();
-
-
-
 
 
 function preload(){
@@ -30,7 +30,6 @@ function draw() {
   background(125)
 
   //image(img, 10, 10);
-
   //console.log(imageCreation.createPlayerBaseMade);
 
   if (imageCreation.createPlayerBaseMade === false){
@@ -41,18 +40,16 @@ function draw() {
     ship1 = imageCreation.createPlayerShips(width/2, height/2);
   }
 
-
- console.log(resource2.resource);
+  console.log(resource2.resource);
   /*if (mouse.presses()){
     playerShip1.x = mouseX;
     playerShip1.y = mouseY;
   }*/
 
-   //Erin's attempt at movement (works in personal js file)
+  // Erin's attempt at movement (works in personal js file)
   if (mouse.presses()) {
     ship1.moveTo(mouse.x, mouse.y, 4);
   }
-
 }
 
 
