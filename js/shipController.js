@@ -28,6 +28,7 @@ function shipControllerDraw() {
         EnemyBase.x = mouse.x;
         EnemyBase.y = mouse.y;
     }
+    
 }
 
 function spawnBaseGame(){
@@ -60,12 +61,20 @@ function playerShipShooting(){
                 spawnedBullet.rotateTo(EnemyBase, 20, 90);
                 spawnedBullet.overlaps(EnemyBase);
                 spawnedBullet.overlaps(spawnShip);
-                spawnedBullet.moveTo(EnemyBase.x, EnemyBase.y, 1);
+                spawnedBullet.life = 90;
+                spawnedBullet.moveTo(EnemyBase.x, EnemyBase.y, 3);
                 playerSpawnBullet.push(spawnedBullet);
             }
         }
     }
+    for(let i = 0; i < playerSpawnBullet.length; i++){
+        if(playerSpawnBullet[i].overlap(EnemyBase)){
+            playerSpawnBullet[i].remove();
+        }
+        console.log(i);
+    } 
 }
+
 
 function resourceShipController(){
 
