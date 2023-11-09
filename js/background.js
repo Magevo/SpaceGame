@@ -6,7 +6,7 @@ const MAIN_MENU = 1;
 const GAME = 2;
 const SCORE = 3;
 
-let currentGameScreen = GAME;
+let currentGameScreen = START_SCREEN;
 
 //background images 
 let gameBackground;
@@ -51,6 +51,7 @@ function menuPreload() {
   }
 
 function menuSetup(){
+  //background sound that plays in the background 
   backgroundSound.setVolume(0.05);
   backgroundSound.play();
 }
@@ -82,12 +83,12 @@ function drawStartScreen() {
     //Orange Shadow
     fill("Orange");
     text("Journey Across", Mid, Line1);
-    text("The Meteors", Mid, Line2);
+    text("the Meteors", Mid, Line2);
   
     //Blue Text
     fill(0, 213, 255);
     text("Journey Across", Mid + 5, Line1 + 0);
-    text("The Meteors", Mid + 5, Line2 + 0);
+    text("the Meteors", Mid + 5, Line2 + 0);
   
     //keyboard function to go to main menu 
     if (keyIsPressed){
@@ -124,7 +125,7 @@ function drawMainMenu() {
     //Orange Shadow
     fill("Orange");
     text("Journey Across", Mid, Line1);
-    text("The Meteors", Mid, Line2);
+    text("the Meteors", Mid, Line2);
   
     //Black Shadow Start + Exit
     fill("red")
@@ -134,7 +135,7 @@ function drawMainMenu() {
     //Blue Text
     fill(0, 213, 255);
     text("Journey Across", Mid + 5, Line1 + 0);
-    text("The Meteors", Mid + 5, Line2 + 0);
+    text("the Meteors", Mid + 5, Line2 + 0);
   
   }
   
@@ -207,7 +208,7 @@ function drawMainMenu() {
       } else {
         noStroke();
         fill("yellow");
-        rect(250, 415, 285, 4, 20);
+        rect(250, 450, 285, 4, 20);
   
         fill('black');
         textFont(myFont);
@@ -224,7 +225,7 @@ function drawMainMenu() {
       } else {
         noStroke();
         fill('yellow');
-        rect(250, 565, 285, 4, 20);
+        rect(250, 600, 285, 4, 20);
   
         fill('black');
         textFont(myFont);
