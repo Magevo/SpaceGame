@@ -1,14 +1,14 @@
 function preload(){
  menuPreload();
  shipControllerPreload();
- guiPreload();
+//  guiPreload();
 }
 
 function setup() {
   new Canvas(W, H);
   shipControllerSetup();
   menuSetup();
-  guiSetup();
+  // guiSetup();
 }
 
 function draw() {
@@ -26,7 +26,7 @@ function draw() {
     drawGameScreen();
     shipControllerDraw();
     Highlight();
-    guiStart();
+    // guiStart();
 
   }
 
