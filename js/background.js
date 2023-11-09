@@ -7,7 +7,7 @@ const GAME = 2;
 const SCORE = 3;
 const END_GAME = 4; 
 
-let currentGameScreen = END_GAME;
+let currentGameScreen = SCORE;
 
 //background images 
 let gameBackground;
