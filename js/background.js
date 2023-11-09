@@ -7,7 +7,7 @@ const GAME = 2;
 const SCORE = 3;
 const END_GAME = 4; 
 
-let currentGameScreen = MAIN_MENU;
+let currentGameScreen = END_GAME;
 
 //background images 
 let gameBackground;
@@ -203,7 +203,14 @@ function drawScoreScreen() {
 }
 
 function drawEndGameScreen(){
-
+ //background image 
+ image(endGameBackgroundimg, 0,0);
+ 
+ let y = 800
+ //scroll text 
+ text("The End", W/2, y) 
+ y++
+ 
 }
 
 function customButtons() {
