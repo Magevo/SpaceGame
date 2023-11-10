@@ -39,23 +39,23 @@ let y = 0;
 let backgroundSound;
 
 function menuPreload() {
-    //preload background image 
-    startscreenBackgroundimg = loadImage('./assets/backgrounds/startscreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
-    mainMenuBackgroundimg = loadImage('./assets/backgrounds/mainScreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
-    gameBackground = loadImage('./assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
-    scoreBackgroundimg = loadImage('./assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
-    endGameBackgroundimg = loadImage('./assets/backgrounds/endGameBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
-    
-    //preload sounds 
-    backgroundSound = loadSound('assets/ObservingTheStar.ogg'); /* Credit to yd. Sourced from https://opengameart.org/content/another-space-background-track */
+  //preload background image 
+  startscreenBackgroundimg = loadImage('./assets/backgrounds/startscreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  mainMenuBackgroundimg = loadImage('./assets/backgrounds/mainScreenBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  gameBackground = loadImage('./assets/backgrounds/gameBackground.png'); // credit to http://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  scoreBackgroundimg = loadImage('./assets/backgrounds/scoreBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
+  endGameBackgroundimg = loadImage('./assets/backgrounds/endGameBackground.png'); //credit to https://craftpix.net/product/space-shooter-game-kit/?num=1&count=1418&sq=space%20ship%20pack&pos=0
 
-    //preload font 
-    myFont = loadFont('assets/Audiowide-Regular.ttf');
-  
-    //preload score data 
-    scoreData = loadStrings('data/score.txt');
-    endGameCredit = loadStrings('data/endgame.txt');
-  }
+  //preload sounds 
+  backgroundSound = loadSound('assets/ObservingTheStar.ogg'); /* Credit to yd. Sourced from https://opengameart.org/content/another-space-background-track */
+
+  //preload font 
+  myFont = loadFont('assets/Audiowide-Regular.ttf');
+
+  //preload score data 
+  scoreData = loadStrings('data/score.txt');
+  endGameCredit = loadStrings('data/endgame.txt');
+}
 
 function menuSetup(){
   //background sound that plays in the background 
@@ -144,7 +144,7 @@ function drawMainMenu() {
   text("Journey Across", Mid + 5, Line1 + 0);
   text("the Meteors", Mid + 5, Line2 + 0);
   
-  }
+}
   
 function drawGameScreen() {
   //background image and image moving
@@ -164,46 +164,46 @@ function drawGameScreen() {
 }
 
 function drawScoreScreen() {
-    //background image 
-    image(scoreBackgroundimg, 0,0);
-  
-    // array for scores 
-    let boardX = W/2; 
-    let boardY = 200;
-    textSize(40);
-    fill('red');
-    for (let i = 0; i < scoreData.length; i++) {
-      text(scoreData[i], boardX, boardY);
-      boardY += 40;
+  //background image 
+  image(scoreBackgroundimg, 0, 0);
+
+  // array for scores 
+  let boardX = W / 2;
+  let boardY = 200;
+  textSize(40);
+  fill('red');
+  for (let i = 0; i < scoreData.length; i++) {
+    text(scoreData[i], boardX, boardY);
+    boardY += 40;
+  }
+
+  //Exit text and return to main menu
+  let Mid = 1100;
+  let Line3 = 650;
+  let Line4 = Line3 + 150;
+
+  if (mouseX > 1000 && mouseX < 1200 && mouseY > 800 && mouseY < 900) {
+    if (mouseIsPressed) {
+      gotoMainMenu();
+
+    } else {
+      noStroke();
+      fill('yellow');
+      rect(1000, 850, 210, 4, 20);
+
+      fill('black');
+      textFont(myFont);
+      textSize(60);
+      textAlign(CENTER);
+      text("Exit", 1100, 800);
     }
-  
-    //Exit text and return to main menu
-    let Mid = 1100;
-    let Line3 = 650;
-    let Line4 = Line3 + 150;
-    
-    if (mouseX > 1000 && mouseX < 1200 && mouseY > 800 && mouseY < 900) {
-      if (mouseIsPressed) {
-        gotoMainMenu();
-  
-      } else {
-        noStroke();
-        fill('yellow');
-        rect(1000, 850, 210, 4, 20);
-  
-        fill('black');
-        textFont(myFont);
-        textSize(60);
-        textAlign(CENTER);
-        text("Exit", 1100, 800);
-      }
-    } 
-    textFont(myFont);
-    textSize(60);
-    textAlign(CENTER);
-  
-    fill('red')
-    text("Exit", Mid,Line4 + 10);
+  }
+  textFont(myFont);
+  textSize(60);
+  textAlign(CENTER);
+
+  fill('red')
+  text("Exit", Mid, Line4 + 10);
 }
 
 function drawEndGameScreen(){
@@ -230,37 +230,37 @@ function drawEndGameScreen(){
 }
 
 function customButtons() {
-    if (mouseX > 450 && mouseX < 700 && mouseY > 400 && mouseY < 450) {
-      if (mouseIsPressed) {
-       gotoGame();
-  
-      } else {
-        noStroke();
-        fill("yellow");
-        rect(450, 480, 285, 4, 20);
-  
-        fill('black');
-        textFont(myFont);
-        textSize(60);
-        textAlign(CENTER);
-        text("Start", 600, 450);
-      }
-    } else { }
-  
-    if (mouseX > 450 && mouseX < 700 && mouseY > 500 && mouseY < 600) {
-      if (mouseIsPressed) {
-        gotoScore();
-  
-      } else {
-        noStroke();
-        fill('yellow');
-        rect(450, 630, 285, 4, 20);
-  
-        fill('black');
-        textFont(myFont);
-        textSize(60);
-        textAlign(CENTER);
-        text("Score", 600, 600);
-      }
+  if (mouseX > 450 && mouseX < 700 && mouseY > 400 && mouseY < 450) {
+    if (mouseIsPressed) {
+      gotoGame();
+
+    } else {
+      noStroke();
+      fill("yellow");
+      rect(450, 480, 285, 4, 20);
+
+      fill('black');
+      textFont(myFont);
+      textSize(60);
+      textAlign(CENTER);
+      text("Start", 600, 450);
     }
+  } else { }
+
+  if (mouseX > 450 && mouseX < 700 && mouseY > 500 && mouseY < 600) {
+    if (mouseIsPressed) {
+      gotoScore();
+
+    } else {
+      noStroke();
+      fill('yellow');
+      rect(450, 630, 285, 4, 20);
+
+      fill('black');
+      textFont(myFont);
+      textSize(60);
+      textAlign(CENTER);
+      text("Score", 600, 600);
+    }
+  }
 }
