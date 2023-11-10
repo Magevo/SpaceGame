@@ -8,6 +8,8 @@ function setup() {
   new Canvas(W, H);
   shipControllerSetup();
   menuSetup();
+  extraEnemyShip = imageCreation.createEnemyShips(-2000, -2000);
+  enemyShip.push(extraEnemyShip);
   // guiSetup();
 }
 
