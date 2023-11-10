@@ -2,6 +2,7 @@ let imageCreation = new objectCreation();
 let travelSwitch = 0;
 let spriteCheck = 0;
 let totalResource = 0;
+spawnCheckStaticEnemy = true;
 
 
 function shipControllerPreload (){
@@ -10,6 +11,7 @@ function shipControllerPreload (){
 
 function shipControllerSetup (){
     spawnShip = new Group();
+    enemyShip = new Group();
     highlighter = new Group();
     resourceShip = new Group();
     playerSpawnBullet = new Group();
@@ -24,10 +26,10 @@ function shipControllerDraw() {
     fighterShipController();
     resourceShipController();
     playerShipShooting();
-    if(kb.pressed("p")){
-        EnemyBase.x = mouse.x;
-        EnemyBase.y = mouse.y;
-    }
+    enemyShipShooting(); 
+    enemyShipSpawn();
+    gameEnd();
+    removeAllSprites();
     
 }
 
@@ -52,27 +54,88 @@ function fighterShipController(){
 
 }
 
+function enemyShipSpawn(){
+    let xUpdater = EnemyBase.x - 30;
+    let yUpdater = EnemyBase.y + 130;
+    let rotation = 140;
+    if(currentGameScreen == GAME && spawnCheckStaticEnemy === true){
+        for(let i = 0; i < 2; i++){
+            let enemyShipSpawn = imageCreation.createEnemyShips(xUpdater, yUpdater);
+                enemyShipSpawn.rotation = rotation;
+                enemyShip.push(enemyShipSpawn);
+                xUpdater += 180;
+                yUpdater -= 120
+                rotation += 30;
+            }
+        }
+        spawnCheckStaticEnemy = false;
+}
+
 function playerShipShooting(){
     for(let i = 0; i < spawnShip.length; i++){
-        if (dist(spawnShip[i].x, spawnShip[i].y, EnemyBase.x, EnemyBase.y)  < 300){
+        for(let k = 0; k < enemyShip.length; k++){
+        if (dist(spawnShip[i].x, spawnShip[i].y, EnemyBase.x, EnemyBase.y)  < 300 && EnemyBase.hp >= 1){
             if (frameCount % 50 == 1){
                 let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
                 spawnedBullet.rotation = spawnShip[i].rotation;
                 spawnedBullet.rotateTo(EnemyBase, 20, 90);
                 spawnedBullet.overlaps(EnemyBase);
                 spawnedBullet.overlaps(spawnShip);
-                spawnedBullet.life = 90;
+                spawnedBullet.life = 80;
                 spawnedBullet.moveTo(EnemyBase.x, EnemyBase.y, 3);
+                playerSpawnBullet.push(spawnedBullet);
+            }
+
+        } 
+        
+        if(dist(spawnShip[i].x, spawnShip[i].y, enemyShip[k].x, enemyShip[k].y)  < 300 && enemyShip[k].hp >= 1){
+            if (frameCount % 50 == 1){
+                let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
+                spawnedBullet.rotation = spawnShip[i].rotation;
+                spawnedBullet.rotateTo(enemyShip[k], 20, 90);
+                spawnedBullet.overlaps(enemyShip[k]);
+                spawnedBullet.overlaps(spawnShip);
+                spawnedBullet.life = 80;
+                spawnedBullet.moveTo(enemyShip[k].x, enemyShip[k].y, 3);
                 playerSpawnBullet.push(spawnedBullet);
             }
         }
     }
+    }
+
+
     for(let i = 0; i < playerSpawnBullet.length; i++){
-        if(playerSpawnBullet[i].overlap(EnemyBase)){
-            playerSpawnBullet[i].remove();
-        }
+        for(let k = 0; k < enemyShip.length; k++){
+            if(playerSpawnBullet[i].overlap(EnemyBase)){
+                EnemyBase.hp --;
+                EnemyBase.text = EnemyBase.hp;
+                playerSpawnBullet[i].remove();
+                    if(EnemyBase.hp == 0){
+                        EnemyBase.remove();
+                    } 
+
+            } else if (playerSpawnBullet[i].overlap(enemyShip[k])){
+                enemyShip[k].hp --;
+                enemyShip[k].text = enemyShip[k].hp;
+                playerSpawnBullet[i].remove();
+                    if(enemyShip[k].hp == 0){
+                        enemyShip[k].remove();
+                    }
         console.log(i);
+    }
     } 
+}
+}
+
+
+function enemyShipShooting(){
+
+}
+
+function gameEnd(){
+    if(EnemyBase.hp == 0 || PlayerBase.hp == 0){
+        currentGameScreen = END_GAME;
+    }
 }
 
 
@@ -175,6 +238,16 @@ function resourceShipController(){
 
 
 }
+
+function removeAllSprites(){
+    if(EnemyBase.hp == 0){
+        
+        for(let i = allSprites.length; i--;){  //GRABS ALL SPRITES AND REMOVES THEM.
+            allSprites[i].remove()
+        }
+    }
+  }
+  
 
 
 

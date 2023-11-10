@@ -17,6 +17,7 @@ class objectCreation {
       this.images = new Array(); // Array for storing images.
       this.createPlayerBaseMade = false;
       this.createPlayerShipMade = false;
+      this.createEnemyShipMade = false;
     }
 
     preload() {
@@ -154,6 +155,7 @@ class objectCreation {
       // Text size and colour of the object ('obj') are set here.
       obj.textSize = 10;
       obj.textColour = 'red';
+      obj.collider = 'static';
 
       // The collider of 'obj' is set to 'static', because the object is a sprite, and the 
       //  default collider for a sprite is 'dynamic'. 
@@ -258,6 +260,8 @@ class objectCreation {
 
       // 'obj.debug' showsthe physical collider with a green box and a cross-hair in the centre. 
       obj.debug = debugged;
+
+      this.createEnemyShipMade = true;
 
       return obj;
     }
