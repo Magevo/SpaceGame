@@ -7,7 +7,7 @@ const GAME = 2;
 const SCORE = 3;
 const END_GAME = 4; 
 
-let currentGameScreen = SCORE;
+let currentGameScreen = END_GAME;
 
 //background images 
 let gameBackground;
@@ -122,7 +122,7 @@ function drawMainMenu() {
   let Line2 = Line1 + 100;
   let Mid = 400;
 
-  let Line3 = 400;
+  let Line3 = H/2;
   let Line4 = Line3 + 150;
 
   textFont(myFont);
@@ -136,8 +136,8 @@ function drawMainMenu() {
 
   //Black Shadow Start + Exit
   fill("red")
-  text("Start", Mid, Line3 + 10);
-  text("Score", Mid, Line4 + 10);
+  text("Start", W/2, Line3 + 10);
+  text("Score", W/2, Line4 + 10);
 
   //Blue Text
   fill(0, 213, 255);
@@ -168,7 +168,7 @@ function drawScoreScreen() {
     image(scoreBackgroundimg, 0,0);
   
     // array for scores 
-    let boardX = 500; 
+    let boardX = W/2; 
     let boardY = 200;
     textSize(40);
     fill('red');
@@ -215,43 +215,42 @@ function drawEndGameScreen(){
   textFont(myFont);
   textSize(50);
   textAlign(CENTER);
-  fill('yellow');
-  for (let i = 0; i < )
+  
 
 }
 
 function customButtons() {
-    if (mouseX > 245 && mouseX < 545 && mouseY > 320 && mouseY < 420) {
+    if (mouseX > 450 && mouseX < 700 && mouseY > 400 && mouseY < 450) {
       if (mouseIsPressed) {
        gotoGame();
   
       } else {
         noStroke();
         fill("yellow");
-        rect(250, 450, 285, 4, 20);
+        rect(450, 480, 285, 4, 20);
   
         fill('black');
         textFont(myFont);
         textSize(60);
         textAlign(CENTER);
-        text("Start", 400, 400);
+        text("Start", 600, 450);
       }
     } else { }
   
-    if (mouseX > 100 && mouseX < 700 && mouseY > 470 && mouseY < 570) {
+    if (mouseX > 450 && mouseX < 700 && mouseY > 500 && mouseY < 600) {
       if (mouseIsPressed) {
         gotoScore();
   
       } else {
         noStroke();
         fill('yellow');
-        rect(250, 600, 285, 4, 20);
+        rect(450, 630, 285, 4, 20);
   
         fill('black');
         textFont(myFont);
         textSize(60);
         textAlign(CENTER);
-        text("Score", 400, 550);
+        text("Score", 600, 600);
       }
     }
 }
