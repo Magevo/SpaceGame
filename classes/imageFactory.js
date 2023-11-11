@@ -27,6 +27,7 @@ class objectCreation {
       this.images.push({id: "enemyBase", path: "assets/base/enemy_base.png"})
       this.images.push({id: "playerShips", path: "assets/combatShips/playerShips/Ship_LVL_5.png"})
       this.images.push({id: "enemyShips", path: "assets/combatShips/enemyShips/Ship_LVL_1.png"})
+      this.images.push({id: "waveShips", path: "assets/combatShips/enemyShips/Ship_LVL_5.png"})
       this.images.push({id: "resourceShips", path: "assets/combatShips/playerShips/Ship_LVL_1_TEST.png"})
       this.images.push({id: "shotRound", path: "assets/combatShips/shots/Rocket_Effect_01.png"})
       
@@ -250,6 +251,29 @@ class objectCreation {
       // 'obj.hp' sets the objects health points to 4 (i think - Erin). 
       let obj = this.createObject(x, y);
       obj.image = this.getImageByID("enemyShips");
+      obj.hp = 4;
+
+      // Text size and colour of the object ('obj') are set here.
+      obj.textSize = 10;
+      obj.textColour = 'red';
+
+      obj.text = obj.hp;
+
+      // 'obj.debug' showsthe physical collider with a green box and a cross-hair in the centre. 
+      obj.debug = debugged;
+
+      this.createEnemyShipMade = true;
+
+      return obj;
+    }
+
+    createEnemyShipsWaves(x, y) {
+      // Set 'obj' as a new variable that calls the a creation of the class 'createObject'.
+      // 'obj.img' is an object that calls the class 'getImageByID' to get the ID of the 
+      //   the image 'playerShips', thus grabbing the image and attaching it to 'obj'.
+      // 'obj.hp' sets the objects health points to 4 (i think - Erin). 
+      let obj = this.createObject(x, y);
+      obj.image = this.getImageByID("waveShips");
       obj.hp = 4;
 
       // Text size and colour of the object ('obj') are set here.

@@ -6,10 +6,13 @@ let EnemyBase;
 spawnCheckStaticEnemy = true;
 
 ///Wave Management
-let waveTimer = 300;
-let waveShipCounter = 2;
-let shipsX = 300;
-let shipsY = 300;
+let waveTimer = 600;
+let waveShipCounter = 1;
+let shipsXOne = 10;
+let shipsYOne = 330;
+
+let shipsXTwo = 300;
+let shipsYTwo = 10;
 
 
 function shipControllerPreload (){
@@ -41,7 +44,9 @@ function shipControllerDraw() {
     gameEnd();
     removeAllSprites();
     enemyShipShooting(); 
-    enemyWaveSpawn();
+    enemyWaveOne();
+    enemyWaveTwo();
+    enemyWaveThree();
     shotCheckEnemy();
     shotCheckPlayer();
     waveTimer--;
@@ -249,17 +254,20 @@ function shotCheckPlayer(){
 }
 
 function shotCheckEnemy(){
-    for(let f = 0; f < enemySpawnBullet.length; f++){
-        for(let z = 0; z < spawnShip.length; z++){
-            if (enemySpawnBullet[f].overlaps(spawnShip[z])){
-                spawnShip[z].hp --;
-                spawnShip[z].text = spawnShip[z].hp;
-                enemySpawnBullet[f].remove();
-                    if(spawnShip[z].hp == 0){
-                        spawnShip[z].remove();
+    for(let i = 0; i < enemySpawnBullet.length; i++){
+        for(let k = 0; k < spawnShip.length; k++){
+            if (enemySpawnBullet[i].overlaps(spawnShip[k])){
+                spawnShip[k].hp --;
+                spawnShip[k].text = spawnShip[k].hp;
+                enemySpawnBullet[i].remove();
+                    if(spawnShip[k].hp == 0){
+                        spawnShip[k].remove();
                     } else return;
             }
+        }
+    }
 
+        for(let f = 0; f < enemySpawnBullet.length; f++){
             if (enemySpawnBullet[f].overlaps(PlayerBase)){
                 PlayerBase.hp --;
                 PlayerBase.text = PlayerBase.hp;
@@ -267,10 +275,10 @@ function shotCheckEnemy(){
                     if(PlayerBase.hp == 0){
                         PlayerBase.remove();
                     } else return;
-            }
-        }
     }
 }
+}
+
 
 function gameEnd(){
     if(EnemyBase.hp == 0 || PlayerBase.hp == 0){
@@ -283,20 +291,69 @@ function removeAllSprites(){
     if(EnemyBase.hp == 0 || PlayerBase.hp == 0){
         
         for(let i = allSprites.length; i--;){  //GRABS ALL SPRITES AND REMOVES THEM.
-            allSprites[i].remove()
+            allSprites[i].remove() 
         }
     }
 }
 
-function enemyWaveSpawn(){
-    if(waveTimer <= 0 && waveShipCounter > 0 && waveShipCounter < 3){
-        let waveOneShips = imageCreation.createEnemyShips(shipsX, shipsY);
+function enemyWaveOne(){
+    if(waveTimer <= 0 && waveShipCounter > 0 && waveShips.length == 0){
+        let waveOneShipsFirst = imageCreation.createEnemyShipsWaves(shipsXOne, shipsYOne);
+        let waveOneShipsSecond = imageCreation.createEnemyShipsWaves(shipsXTwo, shipsYTwo);
+        waveOneShipsFirst.overlaps(enemyShip)
+        waveOneShipsSecond.overlaps(enemyShip)
         waveShipCounter --;
-        shipsX += 100;
-        shipsY -= 300;
-        waveShips.push(waveOneShips);    
+        waveShips.push(waveOneShipsFirst);
+        waveShips.push(waveOneShipsSecond);
+        if(waveShipCounter == 0){
+        waveShipCounter = 2;
+        waveTimer = 1200;
+        }
     }
+}
 
+function enemyWaveTwo(){
+    if(waveTimer <= 0 && waveShipCounter > 0 ){
+        let waveOneShipsFirst = imageCreation.createEnemyShipsWaves(shipsXOne, shipsYOne);
+        let waveOneShipsSecond = imageCreation.createEnemyShipsWaves(shipsXTwo, shipsYTwo);
+        waveOneShipsFirst.overlaps(enemyShip)
+        waveOneShipsSecond.overlaps(enemyShip)
+        shipsXOne += 50
+        shipsYTwo += 50
+        waveShipCounter --;
+        waveShips.push(waveOneShipsFirst);
+        waveShips.push(waveOneShipsSecond);
+        if(waveShipCounter == 0){
+        waveShipCounter = 3;
+        waveTimer = 1500;
+        shipsXOne = 10;
+        shipsYOne = 330;
+        shipsXTwo = 300;
+        shipsYTwo = 10;
+        }
+    }
+}
+
+function enemyWaveThree(){
+    if(waveTimer <= 0 && waveShipCounter > 0){
+        let waveOneShipsFirst = imageCreation.createEnemyShipsWaves(shipsXOne, shipsYOne);
+        let waveOneShipsSecond = imageCreation.createEnemyShipsWaves(shipsXTwo, shipsYTwo);
+        waveOneShipsFirst.overlaps(enemyShip)
+        waveOneShipsSecond.overlaps(enemyShip)
+        shipsXOne += 50
+        shipsYTwo += 50
+        waveShipCounter --;
+        waveShips.push(waveOneShipsFirst);
+        waveShips.push(waveOneShipsSecond);
+        if(waveShipCounter == 0){
+        waveShipCounter = 3;
+        waveTimer = 3000;
+        shipsXOne = 10;
+        shipsYOne = 330;
+        shipsXTwo = 300;
+        shipsYTwo = 10;
+        }
+    }
 }
 
 function enemyWaveMove(){
