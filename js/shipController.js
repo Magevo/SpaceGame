@@ -5,6 +5,12 @@ let totalResource = 0;
 let EnemyBase;
 spawnCheckStaticEnemy = true;
 
+///Wave Management
+let waveTimer = 300;
+let waveShipCounter = 2;
+let shipsX = 300;
+let shipsY = 300;
+
 
 function shipControllerPreload (){
     imageCreation.preload();
@@ -17,6 +23,7 @@ function shipControllerSetup (){
     resourceShip = new Group();
     playerSpawnBullet = new Group();
     enemySpawnBullet = new Group();
+    waveShips = new Group();
     playerSpawnBullet.overlaps(playerSpawnBullet);
     playerSpawnBullet.overlaps(enemySpawnBullet);
     enemySpawnBullet.overlaps(playerSpawnBullet);
@@ -30,9 +37,15 @@ function shipControllerDraw() {
     resourceShipController();
     playerShipShooting();
     enemyShipSpawn();
+    enemyWaveMove();
     gameEnd();
     removeAllSprites();
     enemyShipShooting(); 
+    enemyWaveSpawn();
+    shotCheckEnemy();
+    shotCheckPlayer();
+    waveTimer--;
+
     enemySpawnBullet.overlaps(EnemyBase);
 }
 
@@ -42,6 +55,7 @@ function spawnBaseGame(){
         resource2 = imageCreation.createResourceTwo(width/2.2, height/1.1);
         PlayerBase = imageCreation.createPlayerBase(width/1.15, height/1.15);
         EnemyBase = imageCreation.createEnemyBase(width/10, height/7);
+        EnemyBase.rotation = 140;
         // ship1 = imageCreation.createPlayerShips(width/2, height/2);
       }
 }
@@ -69,7 +83,7 @@ function enemyShipSpawn(){
                 enemyShipSpawn.rotation = rotation;
                 enemyShip.push(enemyShipSpawn);
                 xUpdater += 180;
-                yUpdater -= 120
+                yUpdater -= 120;
                 rotation += 30;
             }
         }
@@ -85,32 +99,51 @@ function playerShipShooting(){
     for(let i = 0; i < spawnShip.length; i++){
         for(let k = 0; k < enemyShip.length; k++){
         if (dist(spawnShip[i].x, spawnShip[i].y, EnemyBase.x, EnemyBase.y)  < 300 && EnemyBase.hp >= 1){ ///The dist check is different for every target. 1
-            if (frameCount % 50 == 1){
-                let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
-                spawnedBullet.rotation = spawnShip[i].rotation;
-                spawnedBullet.rotateTo(EnemyBase, 20, 90);
-                spawnedBullet.overlaps(EnemyBase);
-                spawnedBullet.overlaps(spawnShip);
-                spawnedBullet.life = 80;
-                spawnedBullet.moveTo(EnemyBase.x, EnemyBase.y, 3);
-                playerSpawnBullet.push(spawnedBullet);
-            }
+            spawnShip[i].rotateTo(EnemyBase, 2, 90);
+                if (frameCount % 50 == 1){
+                    let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
+                    spawnedBullet.rotation = spawnShip[i].rotation;
+                    spawnedBullet.rotateTo(EnemyBase, 20, 90);
+                    spawnedBullet.overlaps(EnemyBase);
+                    spawnedBullet.overlaps(spawnShip);
+                    spawnedBullet.life = 80;
+                    spawnedBullet.moveTo(EnemyBase.x, EnemyBase.y, 3);
+                    playerSpawnBullet.push(spawnedBullet);
+                }
 
         } else if(dist(spawnShip[i].x, spawnShip[i].y, enemyShip[k].x, enemyShip[k].y)  < 300 && enemyShip[k].hp >= 1){ ///This helps keep the rounds shot arrays clean. 1.1
-            if (frameCount % 50 == 1){
-                let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
-                spawnedBullet.rotation = spawnShip[i].rotation;
-                spawnedBullet.rotateTo(enemyShip[k], 20, 90);
-                spawnedBullet.overlaps(enemyShip[k]);
-                spawnedBullet.overlaps(spawnShip);
-                spawnedBullet.life = 80;
-                spawnedBullet.moveTo(enemyShip[k].x, enemyShip[k].y, 3);
-                playerSpawnBullet.push(spawnedBullet);
-            }
-        } 
+            spawnShip[i].rotateTo(enemyShip[k], 2, 90);
+                if (frameCount % 50 == 1){
+                    let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
+                    spawnedBullet.rotation = spawnShip[i].rotation;
+                    spawnedBullet.rotateTo(enemyShip[k], 20, 90);
+                    spawnedBullet.overlaps(enemyShip[k]);
+                    spawnedBullet.overlaps(spawnShip);
+                    spawnedBullet.life = 80;
+                    spawnedBullet.moveTo(enemyShip[k].x, enemyShip[k].y, 3);
+                    playerSpawnBullet.push(spawnedBullet);
+                }
+            } 
+        }
     }
+
+    for(let i = 0; i < spawnShip.length; i++){
+        for(let k = 0; k < waveShips.length; k++){
+            if (dist(spawnShip[i].x, spawnShip[i].y, waveShips[k].x, waveShips[k].y)  < 300 && waveShips[k].hp >= 1){ ///Checking for ships that spawn in waves
+                spawnShip[i].rotateTo(waveShips[k], 2, 90);
+                if (frameCount % 50 == 1){
+                    let spawnedBullet = imageCreation.createShotRound(spawnShip[i].x, spawnShip[i].y);
+                    spawnedBullet.rotation = spawnShip[i].rotation;
+                    spawnedBullet.rotateTo(waveShips[k], 20, 90);
+                    spawnedBullet.overlaps(waveShips[k]);
+                    spawnedBullet.overlaps(spawnShip);
+                    spawnedBullet.life = 80;
+                    spawnedBullet.moveTo(waveShips[k].x, waveShips[k].y, 3);
+                    playerSpawnBullet.push(spawnedBullet);
+        }
     }
-    shotCheckPlayer();
+}
+}
 }
 
 
@@ -118,9 +151,9 @@ function enemyShipShooting(){
     for(let i = 0; i < spawnShip.length; i++){
         for(let k = 0; k < enemyShip.length; k++){
         if (dist(enemyShip[k].x, enemyShip[k].y, spawnShip[i].x, spawnShip[i].y) < 300 && spawnShip[i].hp >= 1){
+            enemyShip[k].rotateTo(spawnShip[i], 2, 90);
             if (frameCount % 60 == 1){
                 let spawnedBullet = imageCreation.createShotRound(enemyShip[k].x, enemyShip[k].y);
-                spawnedBullet.rotation = spawnShip[i].rotation;
                 spawnedBullet.rotateTo(spawnShip[i], 20, 90);
                 spawnedBullet.overlaps(spawnShip[i]);
                 spawnedBullet.overlaps(enemyShip);
@@ -132,7 +165,7 @@ function enemyShipShooting(){
         } else if(dist(EnemyBase.x, EnemyBase.y, spawnShip[i].x, spawnShip[i].y)  < 300 && enemyShip[k].hp >= 1){
             if (frameCount % 50 == 1){
                 let spawnedBullet = imageCreation.createShotRound(EnemyBase.x, EnemyBase.y);
-                spawnedBullet.rotation = spawnShip[i].rotation;
+                spawnedBullet.rotation = enemyShip[k].rotation;
                 spawnedBullet.rotateTo(spawnShip[i], 20, 90);
                 spawnedBullet.overlaps(spawnShip[i]);
                 spawnedBullet.overlaps(enemyShip);
@@ -143,7 +176,37 @@ function enemyShipShooting(){
         }
     }
     }
-    shotCheckEnemy();
+
+    for(let i = 0; i < spawnShip.length; i++){
+        for(let k = 0; k < waveShips.length; k++){
+            if (dist(waveShips[k].x, waveShips[k].y, spawnShip[i].x, spawnShip[i].y) < 300 && spawnShip[i].hp >= 1){
+                waveShips[k].rotateTo(spawnShip[i], 2, 90);
+                if (frameCount % 60 == 1){
+                    let spawnedBullet = imageCreation.createShotRound(waveShips[k].x, waveShips[k].y);
+                    spawnedBullet.rotation = waveShips[k].rotation;
+                    spawnedBullet.rotateTo(spawnShip[i], 20, 90);
+                    spawnedBullet.overlaps(spawnShip[i]);
+                    spawnedBullet.overlaps(waveShips);
+                    spawnedBullet.life = 80;
+                    spawnedBullet.moveTo(spawnShip[i].x, spawnShip[i].y, 3);
+                    enemySpawnBullet.push(spawnedBullet);
+                }
+        }
+        
+        if (dist(waveShips[k].x, waveShips[k].y, PlayerBase.x, PlayerBase.y) < 300 && PlayerBase.hp >= 1){
+            waveShips[k].rotateTo(PlayerBase, 2, 90);
+            if (frameCount % 60 == 1){
+                let spawnedBullet = imageCreation.createShotRound(waveShips[k].x, waveShips[k].y);
+                spawnedBullet.rotateTo(PlayerBase, 20, 90);
+                spawnedBullet.overlaps(PlayerBase);
+                spawnedBullet.overlaps(waveShips);
+                spawnedBullet.life = 80;
+                spawnedBullet.moveTo(PlayerBase.x, PlayerBase.y, 3);
+                enemySpawnBullet.push(spawnedBullet);
+            }
+    }
+    }
+}
 }
 
 function shotCheckPlayer(){
@@ -170,6 +233,19 @@ function shotCheckPlayer(){
         }
 
     }
+
+    for(let i = 0; i < playerSpawnBullet.length; i++){
+        for(let k = 0; k < waveShips.length; k++){
+            if (playerSpawnBullet[i].overlaps(waveShips[k])){
+                waveShips[k].hp --;
+                waveShips[k].text = waveShips[k].hp;
+                playerSpawnBullet[i].remove();
+                    if(waveShips[k].hp == 0){
+                        waveShips[k].remove();
+                    } else return;
+            }
+        }
+    }
 }
 
 function shotCheckEnemy(){
@@ -181,6 +257,15 @@ function shotCheckEnemy(){
                 enemySpawnBullet[f].remove();
                     if(spawnShip[z].hp == 0){
                         spawnShip[z].remove();
+                    } else return;
+            }
+
+            if (enemySpawnBullet[f].overlaps(PlayerBase)){
+                PlayerBase.hp --;
+                PlayerBase.text = PlayerBase.hp;
+                enemySpawnBullet[f].remove();
+                    if(PlayerBase.hp == 0){
+                        PlayerBase.remove();
                     } else return;
             }
         }
@@ -195,13 +280,40 @@ function gameEnd(){
 
 
 function removeAllSprites(){
-    if(EnemyBase.hp == 0){
+    if(EnemyBase.hp == 0 || PlayerBase.hp == 0){
         
         for(let i = allSprites.length; i--;){  //GRABS ALL SPRITES AND REMOVES THEM.
             allSprites[i].remove()
         }
     }
-  }
+}
+
+function enemyWaveSpawn(){
+    if(waveTimer <= 0 && waveShipCounter > 0 && waveShipCounter < 3){
+        let waveOneShips = imageCreation.createEnemyShips(shipsX, shipsY);
+        waveShipCounter --;
+        shipsX += 100;
+        shipsY -= 300;
+        waveShips.push(waveOneShips);    
+    }
+
+}
+
+function enemyWaveMove(){
+    for(let i = 0; i < waveShips.length; i++){
+        for(let k = 0; k < spawnShip.length; k++){
+            if (dist(waveShips[i].x, waveShips[i].y, PlayerBase.x, PlayerBase.y)  < 300 && PlayerBase.hp >= 1){
+                waveShips[i].drag = 10;
+
+            } else if (dist(waveShips[i].x, waveShips[i].y, spawnShip[k].x, spawnShip[k].y)  < 300 && spawnShip[k].hp >= 1){
+                waveShips[i].drag = 10;
+
+            } else 
+                    waveShips[i].moveTo(PlayerBase.x, PlayerBase.y, 2);
+                    waveShips[i].rotateTo(PlayerBase, 2, 90);
+    }
+    }
+}
 
 
 function resourceShipController(){
