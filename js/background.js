@@ -86,7 +86,7 @@ function drawStartScreen() {
   //Game name 
   let Line1 = 140
   let Line2 = Line1 + 100
-  let Mid = 400
+  let Mid = 600
   textFont(myFont);
   textSize(60);
   textAlign(CENTER);
@@ -120,7 +120,7 @@ function drawMainMenu() {
   //text 
   let Line1 = 140;
   let Line2 = Line1 + 100;
-  let Mid = 400;
+  let Mid = 600;
 
   let Line3 = H/2;
   let Line4 = Line3 + 150;
