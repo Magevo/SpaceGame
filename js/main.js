@@ -9,7 +9,9 @@ function setup() {
   shipControllerSetup();
   menuSetup();
   extraEnemyShip = imageCreation.createEnemyShips(-2000, -2000);
+  extraPlayerShip = imageCreation.createPlayerShips(-1000, -2000);
   enemyShip.push(extraEnemyShip);
+  spawnShip.push(extraPlayerShip);
   // guiSetup();
 }
 

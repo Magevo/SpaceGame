@@ -366,8 +366,8 @@ function enemyWaveMove(){
                 waveShips[i].drag = 10;
 
             } else 
-                    waveShips[i].moveTo(PlayerBase.x, PlayerBase.y, 2);
-                    waveShips[i].rotateTo(PlayerBase, 2, 90);
+            waveShips[i].moveTo(PlayerBase.x, PlayerBase.y, 2);
+            waveShips[i].rotateTo(PlayerBase, 2, 90);
     }
     }
 }
