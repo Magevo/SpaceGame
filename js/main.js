@@ -1,7 +1,7 @@
 function preload(){
  menuPreload();
  shipControllerPreload();
-//  guiPreload();
+ guiPreload();
 }
 
 function setup() {
@@ -28,7 +28,7 @@ function draw() {
     drawGameScreen();
     shipControllerDraw();
     Highlight();
-    // guiStart();
+    guiStart();
 
   }
 

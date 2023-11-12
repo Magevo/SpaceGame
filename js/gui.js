@@ -14,17 +14,17 @@ function guiPreload(){
 }
 
 function guiSetup(){
-    textSize(30);
-    textStyle(BOLD);
-    fill("white");
-    textAlign(LEFT, CENTER);
+    // textSize(30);
+    // textStyle(BOLD);
+    // fill("white");
+    // textAlign(LEFT, CENTER);
 
     
-    buy_button_sprite1 = new Sprite(1100,150);
-    buy_button_sprite1.image = buy_button;
+    // buy_button_sprite1 = new Sprite(1100,150);
+    // buy_button_sprite1.image = buy_button;
     
-    buy_button_sprite2 = new Sprite(1100,225);
-    buy_button_sprite2.image = buy_button;
+    // buy_button_sprite2 = new Sprite(1100,225);
+    // buy_button_sprite2.image = buy_button;
     
     
 
@@ -32,15 +32,19 @@ function guiSetup(){
 
 function guiStart(){
     resourceCounterControl();
-    openShop();
+    // openShop();
     
 }
 
 function resourceCounterControl(){
     //200 x 62
+    textSize(30);
+    textStyle(BOLD);
+    fill("white");
+    textAlign(LEFT, CENTER);
     image(resourceCounter, 950,50);
     image(resource_icon, 970,60);
-    text(totalResource, 1005, 80);
+    text(totalResource, 1005, 73);
 }
 
 function openShop(){
