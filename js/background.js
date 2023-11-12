@@ -222,7 +222,7 @@ function drawEndGameScreen(){
     y = y + 0.5;
     text(endGameCredit[i], W/2, textY-y)
     textY +=80
-    console.log(y);
+    //console.log(y);
   }
   if (y > 1300){
     currentGameScreen = MAIN_MENU;
